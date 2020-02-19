@@ -1,0 +1,71 @@
+public class Character {
+
+                                                 // Instance variables ~~~~~
+    private int x_cord;
+    private int y_cord;
+    private int health;
+    private String name;
+
+
+                                                // Constructor ~~~~~
+
+    public Character Character();{  
+    }
+
+
+    }
+
+    public void CharacterCopy(Character original){
+        // Copy of Character to new Character obj
+
+        this.x_cord = original.getX();
+        this.y_cord = original.getY();
+        this.health = original.getHealth();
+        this.name = original.getName();
+
+
+    }
+
+
+                                                 // Methods ~~~~~
+    //Getters -----
+    public int getX(){
+        // Returns any Character object's x_cord
+
+        return this.x_cord;
+    }
+
+    public int getY(){
+        // Returns any Character object's y_cord
+
+        return this.y_cord;
+    }
+
+    public int getHealth(){
+        // Returns any Character object's health
+
+        return this.health;
+    }
+
+    public String getName(){
+        // Returns any Character object's name
+
+        return this.name;
+    }
+
+    //Setters -----
+    public void moveXTo(Character unit, int newX){
+        // Moves the X cord to the specified X
+
+        //Ensuring that there is no privacy leak we create a new object copy and return the new object
+        Character copy = new Character(unit);
+
+
+
+
+
+
+
+    }
+
+}
