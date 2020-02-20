@@ -60,6 +60,16 @@ public class Player extends Character{
         
         
     }
+    
+    
+    // public void moveRight();
+    
+    x_cord = this.getX() + this.getPLAYERSPEED;
+
+    // Move Left
+    public void moveLeft();
+    
+    x_cord = this.getX() - this.getPLAYERSPEED;
 
 }
 
