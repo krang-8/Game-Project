@@ -1,0 +1,22 @@
+public class main {
+    
+    //Main for testing The Character classes
+
+    public static void main(String[] args){
+
+        Player obj = new Player();
+        obj.setName("G.E.O.R.G.E");
+        obj.setTo(1,1);
+        System.out.println(obj.getX());
+        System.out.println(obj.getCords());
+
+
+        System.out.println(obj.getName());
+
+
+
+    }
+
+
+
+}
