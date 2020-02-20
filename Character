@@ -1,34 +1,30 @@
 public class Character {
+    // This is the Parent class for Player and Boss classes
 
-                                                 // Instance variables ~~~~~
+
+                                                 // Instance variables
     private int x_cord;
     private int y_cord;
+    private int maxHealth;
     private int health;
     private String name;
+    private boolean state;
 
 
-                                                // Constructor ~~~~~
-
-    public Character Character();{  
-    }
+                                                // Constructor
 
 
-    }
-
-    public void CharacterCopy(Character original){
+    public Character(Character original){
         // Copy of Character to new Character obj
 
         this.x_cord = original.getX();
         this.y_cord = original.getY();
         this.health = original.getHealth();
         this.name = original.getName();
-
-
     }
 
-
-                                                 // Methods ~~~~~
-    //Getters -----
+                                                 // Methods
+    //Getters
     public int getX(){
         // Returns any Character object's x_cord
 
@@ -53,19 +49,80 @@ public class Character {
         return this.name;
     }
 
-    //Setters -----
-    public void moveXTo(Character unit, int newX){
-        // Moves the X cord to the specified X
+    public boolean getState(){
+        // Gets weather or not the character is alive or dead
+
+        return this.state;
+    }
+
+    public String getCords(Character unit){
+        // Returns the String for current cords in form " (x,y) "
+
+        return "(" + this.getX() + "," + this.getY() + ")";
+
+    }
+
+
+
+
+    //Setters
+    public void setName(String name){
+        //Sets the name for the object
+
+        this.name = name;
+    }
+
+    public void setHealth(int maxHealth){
+        //Sets Maximum health value
+        //Useful for healing and for boss fighting
+
+        this.health = maxHealth;
+    }
+
+    public void increment_health(int increment){
+        //Increments health up or down
+
+        this.health += increment;
+    }
+
+    public void setState(boolean changeTo){
+        // Changes the Value of State variable showing the object should be dead or alive
+
+        this.state = changeTo;
+    }
+
+    public void reverseState(Character unit){
+        // Reverses the state variable of a character object
+
+        if (unit.state){unit.state = false;}else{unit.state = true;} //If state == true then {switch to false}else{switch to true}
+    }
+
+
+    public void incrementX(int increment){
+        // Useful for movement methods for Player and Boss class
+
+        this.x_cord = this.x_cord += increment;
+
+    }
+
+    public void incrementY(int increment){
+        //Useful for jumping and palling movements for player
+
+        this.y_cord = this.y_cord += increment;
+
+    }
+
+    public Character setTo(Character unit, int newX, int newY){
+        // Moves the X cord and Y cord to the new location
 
         //Ensuring that there is no privacy leak we create a new object copy and return the new object
         Character copy = new Character(unit);
+        copy.x_cord = newX;
+        copy.y_cord = newY;
 
-
-
-
-
-
-
+        return copy;
     }
+
+
 
 }
