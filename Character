@@ -2,11 +2,11 @@ public class Character {
     // This is the Parent class for Player and Boss classes
 
                                                  // Instance variables
-    private int x_cord;
-    private int y_cord;
+    private double x_cord;
+    private double y_cord;
     private int maxHealth;
     private int health;
-    private String name;
+    private String name = "UNNAMED";
     private boolean state;
 
 
@@ -30,20 +30,21 @@ public class Character {
         this.name = name;
     }
 
-    public Character() {
+    Character(){
+        // Default constructor
+        // Leaving this empty lets us create Player constructors that are of type character as well
+
     }
-
-
                                                      // Methods
 
                                                     //Getters
-    public int getX(){
+    public double getX(){
         // Returns any Character object's x_cord
 
         return this.x_cord;
     }
 
-    public int getY(){
+    public double getY(){
         // Returns any Character object's y_cord
 
         return this.y_cord;
@@ -117,21 +118,21 @@ public class Character {
     }
 
 
-    public void incrementX(int increment){
+    public void incrementX(double increment){
         // Useful for movement methods for Player and Boss class
 
         this.x_cord = this.x_cord += increment;
 
     }
 
-    public void incrementY(int increment){
+    public void incrementY(double increment){
         //Useful for jumping and palling movements for player
 
         this.y_cord = this.y_cord += increment;
 
     }
 
-    public void setTo(int newX, int newY){
+    public void setTo(double newX, double newY){
         // Moves the X cord and Y cord to the new location
         // Sort of like a 'teleport'
 
@@ -139,9 +140,5 @@ public class Character {
         this.y_cord = newY;
 
     }
-
-
-
-
 
 }
