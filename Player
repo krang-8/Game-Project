@@ -1,32 +1,36 @@
 public class Player extends Character{
     // The Character that the user will control
-                                                 // Instance Variables
 
-    // Abilities
+                                                      // Instance Variables
+
+
     private boolean jumpStatus; // If true the Player is able to call the Jump method
     private boolean dashStatus; // If true the Player is able to call the Dash Method
     private static final int JUMPHEIGHT = 5;
     private static final int DASHLENGTH = 5;
-    private static final int PLAYERSPEED = 1; 
+    private static final int PLAYERSPEED = 1;
 
 
 
 
 
-                                                // Constructor\
+                                                     // Constructor
 
     public Player(Character original) {
         // Makes a Player object as a Character object
         super(original);
     }
 
+    public Player(String name){
+        // Default constructor of a Player Obj
 
+        this.setName(name);
+    }
 
+    public Player(){
+    }
 
-
-
-
-                                                 // Methods
+    // Methods
 
 
 
@@ -43,36 +47,36 @@ public class Player extends Character{
         // Returns the value of dashStatus
         return this.dashStatus;
     }
-    
+
     public int getPLAYERSPEED(){
         //Returns the Players Speed value
         return PLAYERSPEED;
-        
+
     }
 
 
 
-    // Actions
+                                                      // Actions
+        // KeyBoardInput class will use these methods
 
     public void jump(){
         // Current version of this method will instantly move the character to the Ycord + JUMPHEIGHT... wait a bit and fall back down
-        // Version with GUI should gradually raise the players Y value 
-        
-        
+        // Version with GUI should gradually raise the players Y value
+
+
     }
-    
-    
-    // public void moveRight();
-    
-    x_cord = this.getX() + this.getPLAYERSPEED;
 
-    // Move Left
-    public void moveLeft();
-    
-    x_cord = this.getX() - this.getPLAYERSPEED;
 
+    public void moveRight(Character player) {
+        // This will take the objects x_cord and move it according to the Player speed to the right
+
+        this.setTo(this.getX() + PLAYERSPEED, this.getY());
+    }
+
+    /*
+    public void moveLeft() {
+
+        this.x_cord = this.getX() - this.getPLAYERSPEED();
+    }
+    */
 }
-
-
-
-
