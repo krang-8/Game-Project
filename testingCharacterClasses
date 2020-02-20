@@ -1,18 +1,34 @@
 public class main {
-    
+
     //Main for testing The Character classes
 
     public static void main(String[] args){
 
-        Player obj = new Player();
-        obj.setName("G.E.O.R.G.E");
+
+        // Testing creating a new character and moving its X and Y cords
+        Player obj = new Player("Donald Duck");
         obj.setTo(1,1);
-        System.out.println(obj.getX());
         System.out.println(obj.getCords());
 
 
         System.out.println(obj.getName());
+        obj.jump();
+        obj.moveLeft();
+        obj.moveLeft();
+        obj.moveLeft();
+        System.out.println(obj.getCords());
 
+        // Testing Converting from new character obj to player
+
+        Character target = new Character();
+        target.setName("TARGET ");
+        System.out.println(target.getName());
+        Player copy = new Player(target);
+        System.out.println(copy.getName());
+        copy.setName("COPYNAME");
+        System.out.println(target.getName() + copy.getName());
+
+                        // Works fine
 
 
     }
