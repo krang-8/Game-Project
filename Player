@@ -3,21 +3,27 @@ public class Player extends Character{
                                                  // Instance Variables
 
     // Abilities
-    private boolean jumpReady;
-    private boolean dashReady;
+    private boolean jumpStatus; // If true the Player is able to call the Jump method
+    private boolean dashStatus; // If true the Player is able to call the Dash Method
+    private static final int JUMPHEIGHT = 5;
+    private static final int DASHLENGTH = 5;
+    private static final int PLAYERSPEED = 1; 
 
 
 
 
-                                                // Constructor
+
+                                                // Constructor\
+
     public Player(Character original) {
+        // Makes a Player object as a Character object
         super(original);
     }
 
 
 
 
-    
+
 
 
                                                  // Methods
@@ -27,6 +33,36 @@ public class Player extends Character{
     // Setters
 
 
+    // Getters
+
+    public boolean getJumpStatus(){
+        // Returns the value of jumpStatus
+        return this.jumpStatus;
+    }
+    public boolean getDashStatus(){
+        // Returns the value of dashStatus
+        return this.dashStatus;
+    }
+    
+    public int getPLAYERSPEED(){
+        //Returns the Players Speed value
+        return PLAYERSPEED;
+        
+    }
+
+
+
+    // Actions
+
+    public void jump(){
+        // Current version of this method will instantly move the character to the Ycord + JUMPHEIGHT... wait a bit and fall back down
+        // Version with GUI should gradually raise the players Y value 
+        
+        
+    }
 
 }
+
+
+
 
