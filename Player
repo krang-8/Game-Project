@@ -6,9 +6,13 @@ public class Player extends Character{
 
     private boolean jumpStatus; // If true the Player is able to call the Jump method
     private boolean dashStatus; // If true the Player is able to call the Dash Method
-    private static final int JUMPHEIGHT = 5;
-    private static final int DASHLENGTH = 5;
-    private static final int PLAYERSPEED = 1;
+
+    // These will always belong to the Class ----> Potentially modified by POWERUPS and ITEMS
+    private static final double JUMPHEIGHT = 4.0;
+    private static final double ABILITYSPEED = 0.5; // This value is used for the ability functions to change the speed at which a player completes a jump/dash
+    private static final double DASHLENGTH = 5.0;
+    private static final double PLAYERSPEED = 1.0;
+
 
 
 
@@ -17,7 +21,7 @@ public class Player extends Character{
                                                      // Constructor
 
     public Player(Character original) {
-        // Makes a Player object as a Character object
+        // Takes a Character obj and makes it a Player obj
         super(original);
     }
 
@@ -27,17 +31,23 @@ public class Player extends Character{
         this.setName(name);
     }
 
-    public Player(){
+                                                    // Methods
+
+
+                                                    // Setters
+
+    public void setJumpStatus(boolean value){
+        // Setting Jump Status
+        this.jumpStatus = value;
     }
 
-    // Methods
+    public void setDashStatus(boolean value){
+        // Setting Dash Status
+        this.dashStatus = value;
+    }
 
 
-
-    // Setters
-
-
-    // Getters
+                                                    // Getters
 
     public boolean getJumpStatus(){
         // Returns the value of jumpStatus
@@ -48,7 +58,7 @@ public class Player extends Character{
         return this.dashStatus;
     }
 
-    public int getPLAYERSPEED(){
+    public double getPLAYERSPEED(){
         //Returns the Players Speed value
         return PLAYERSPEED;
 
@@ -61,22 +71,54 @@ public class Player extends Character{
 
     public void jump(){
         // Current version of this method will instantly move the character to the Ycord + JUMPHEIGHT... wait a bit and fall back down
-        // Version with GUI should gradually raise the players Y value
+        // Version with GUI should gradually raise the players Y value then gradually lower it
+        // Currently we do not have ground so when if comes to the fall of the jump it will treat 0 as the ground
 
+
+        double perTick = ABILITYSPEED / JUMPHEIGHT; // This is the value we need to add to the players coords each loop
+        double initialY = this.getY();
+
+
+        while (this.getY() < initialY + JUMPHEIGHT ){
+            // This will loop until the player object's current Y value is equal to or greater than the objects initial Y + JUMPHEIGHT
+            // The rising action of a jump
+            // Each loop of this will update the players location gradually upward
+            // The value for ABILITYSPEED; if higher will complete the jump action faster in less frames / Increments
+
+            this.incrementY(perTick);
+            System.out.println(this.getName() + "'s current coordinates are: " + this.getCords()); // This is just used for demo purposes in the full game this should display the player on the screen with the new coords
+
+        }
+
+        while (this.getY() > 0.0){
+            // Falling action of a jump
+
+            this.incrementY(-perTick);
+            System.out.println(this.getName() + "'s current coordinates are: " + this.getCords());
+
+        }
+    }
+
+    public void dash(){
+        // Current version will instantly move the Player a distance to the right
+        // Potential for KeyBoardInput interaction will allow a player to choose which way to dash
+
+        this.incrementX(DASHLENGTH);
 
     }
 
 
-    public void moveRight(Character player) {
+    public void moveRight() {
         // This will take the objects x_cord and move it according to the Player speed to the right
 
-        this.setTo(this.getX() + PLAYERSPEED, this.getY());
+        this.incrementX(PLAYERSPEED);
     }
 
-    /*
+
     public void moveLeft() {
+        // This will like the above method simply add the PLAYERSPEED to the objects y_cords value
 
-        this.x_cord = this.getX() - this.getPLAYERSPEED();
+        this.incrementX(-PLAYERSPEED);
     }
-    */
+
 }
