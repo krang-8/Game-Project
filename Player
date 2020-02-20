@@ -1,0 +1,32 @@
+public class Player extends Character{
+    // The Character that the user will control
+                                                 // Instance Variables
+
+    // Abilities
+    private boolean jumpReady;
+    private boolean dashReady;
+
+
+
+
+                                                // Constructor
+    public Player(Character original) {
+        super(original);
+    }
+
+
+
+
+    
+
+
+                                                 // Methods
+
+
+
+    // Setters
+
+
+
+}
+
