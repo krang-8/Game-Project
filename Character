@@ -1,7 +1,6 @@
 public class Character {
     // This is the Parent class for Player and Boss classes
 
-
                                                  // Instance variables
     private int x_cord;
     private int y_cord;
@@ -9,6 +8,7 @@ public class Character {
     private int health;
     private String name;
     private boolean state;
+
 
 
                                                 // Constructor
@@ -19,12 +19,24 @@ public class Character {
 
         this.x_cord = original.getX();
         this.y_cord = original.getY();
+        this.maxHealth = original.getMaxHealth();
         this.health = original.getHealth();
         this.name = original.getName();
+        this.state = original.getState();
     }
 
-                                                 // Methods
-    //Getters
+    public Character(String name) {
+        // Simple constructor
+        this.name = name;
+    }
+
+    public Character() {
+    }
+
+
+                                                     // Methods
+
+                                                    //Getters
     public int getX(){
         // Returns any Character object's x_cord
 
@@ -35,6 +47,13 @@ public class Character {
         // Returns any Character object's y_cord
 
         return this.y_cord;
+    }
+
+    public int getMaxHealth(){
+        // Returns the Character objects maxHealth;
+
+        return this.maxHealth;
+
     }
 
     public int getHealth(){
@@ -55,17 +74,17 @@ public class Character {
         return this.state;
     }
 
-    public String getCords(Character unit){
+    public String getCords(){
         // Returns the String for current cords in form " (x,y) "
 
         return "(" + this.getX() + "," + this.getY() + ")";
-
     }
 
 
 
 
-    //Setters
+
+                                                //Setters
     public void setName(String name){
         //Sets the name for the object
 
@@ -112,16 +131,16 @@ public class Character {
 
     }
 
-    public Character setTo(Character unit, int newX, int newY){
+    public void setTo(int newX, int newY){
         // Moves the X cord and Y cord to the new location
+        // Sort of like a 'teleport'
 
-        //Ensuring that there is no privacy leak we create a new object copy and return the new object
-        Character copy = new Character(unit);
-        copy.x_cord = newX;
-        copy.y_cord = newY;
+        this.x_cord = newX;
+        this.y_cord = newY;
 
-        return copy;
     }
+
+
 
 
 
