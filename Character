@@ -1,15 +1,18 @@
 public class Character {
     // This is the Parent class for Player and Boss classes
 
-    // Instance variables
-    private int x_cord;
-    private int y_cord;
+                                             // Instance variables
+    private double x_cord;
+    private double y_cord;
     private int maxHealth;
     private int health;
-    private String name;
+    private String name = "UNNAMED";
     private boolean state;
-    
-    // Constructor
+
+
+
+                                             // Constructor
+
 
     public Character(Character original){
         // Copy of Character to new Character obj
@@ -20,55 +23,56 @@ public class Character {
         this.health = original.getHealth();
         this.name = original.getName();
         this.state = original.getState();
-
     }
 
     public Character(String name) {
         // Simple constructor
         this.name = name;
-
     }
 
-    public Character() {
+    Character(){
+        // Default constructor
+        // Leaving this empty lets us create Player constructors that are of type character as well
+
     }
+                                            // Methods
 
-    // Methods
-
-    //Getters
-    public int getX(){
+                                            //Getters
+    public double getX(){
         // Returns any Character object's x_cord
 
-        return this.x_cord;
+        return x_cord;
     }
 
-    public int getY(){
+    public double getY(){
         // Returns any Character object's y_cord
 
-        return this.y_cord;
+        return y_cord;
     }
 
     public int getMaxHealth(){
         // Returns the Character objects maxHealth;
 
-        return this.maxHealth;
+        return maxHealth;
+
     }
 
     public int getHealth(){
         // Returns any Character object's health
 
-        return this.health;
+        return health;
     }
 
     public String getName(){
         // Returns any Character object's name
 
-        return this.name;
+        return name;
     }
 
     public boolean getState(){
         // Gets weather or not the character is alive or dead
 
-        return this.state;
+        return state;
     }
 
     public String getCords(){
@@ -78,14 +82,17 @@ public class Character {
     }
 
 
-    //Setters
+
+
+
+                                            //Setters
     public void setName(String name){
         //Sets the name for the object
 
         this.name = name;
     }
 
-    public void setHealth(int maxHealth){
+    public void setMaxHealth(int maxHealth){
         //Sets Maximum health value
         //Useful for healing and for boss fighting
 
@@ -110,23 +117,28 @@ public class Character {
         if (unit.state){unit.state = false;}else{unit.state = true;} //If state == true then {switch to false}else{switch to true}
     }
 
-    public void incrementX(int increment){
+
+    public void incrementX(double increment){
         // Useful for movement methods for Player and Boss class
 
         this.x_cord = this.x_cord += increment;
+
     }
 
-    public void incrementY(int increment){
+    public void incrementY(double increment){
         //Useful for jumping and palling movements for player
 
         this.y_cord = this.y_cord += increment;
+
     }
 
-    public void setTo(int newX, int newY){
+    public void setTo(double newX, double newY){
         // Moves the X cord and Y cord to the new location
         // Sort of like a 'teleport'
 
         this.x_cord = newX;
         this.y_cord = newY;
+
     }
+
 }
