@@ -8,8 +8,6 @@ public class KeyboardInput extends Character {
 
         // Methods
 
-        String basic = "";
-
         System.out.println("Enter desired direction of movement...(case doesn't matter)\nW - Jump\nA - Move Left\nS - Crouch\nD - Move Right\nP - Dash");
 
         Scanner keyboard = new Scanner(System.in);
