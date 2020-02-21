@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class KeyBoardInput{
+public class KeyboardInput{
 
     //Variables
     private static Scanner keyboard = new Scanner(System.in);
@@ -16,19 +16,20 @@ public class KeyBoardInput{
 
 
         // Move Right
-        if (action.equalsIgnoreCase("D")){target.moveRight(); System.out.println(target.getCords());}
+        if (action.equalsIgnoreCase("D")){target.moveRight();
+        System.out.println(target.getCords() + "\n");}
 
         // Move Left
-        if (action.equalsIgnoreCase("A")){target.moveLeft(); System.out.println(target.getCords());}
+        if (action.equalsIgnoreCase("A")){target.moveLeft();
+        System.out.println(target.getCords() + "\n");}
 
         // Jump
-        if (action.equalsIgnoreCase("W")){target.jump(); System.out.println(target.getCords());}
+        if (action.equalsIgnoreCase("W")){target.jump();
+        System.out.println(target.getCords() + "\n");}
 
-        // Dash Right
-
-        // Dash Left
-
-        // Dash Up
+        // Dash
+        if (action.equalsIgnoreCase("P")){target.dash(target.getPlayerDirection());
+        System.out.println(target.getCords() + "\n");}
 
         // Move Up (Jump)
 
@@ -59,17 +60,37 @@ public class KeyBoardInput{
 
 
         //Creating demoPlayer with the user
+
+            // Setting Name
         System.out.println("Please name your Player: ");
         String input = keyboard.next();
         demoPlayer.setName(input);
 
+            // Setting MaxHealth
+        demoPlayer.setMaxHealth(3);
+        demoPlayer.setHealth(3);
+        System.out.println(demoPlayer.getName() + "'s health is currently: " + demoPlayer.getHealth() + "/" + demoPlayer.getMaxHealth());
+
+            // Ability status'
+                //Jump
+        System.out.println(demoPlayer.getName() + "'s Current Jump Status: " + demoPlayer.getJumpStatus());
+                //Dash
+        System.out.println(demoPlayer.getName() + "'s Current Dash Status: " + demoPlayer.getDashStatus());
+                //Crouch
+        System.out.println(demoPlayer.getName() + "'s Current Crouch Status: " + demoPlayer.getCrouchStatus());
 
 
-        System.out.println(demoPlayer.getCords());
+
+
+        System.out.println(demoPlayer.getCords() + "\n");
         do {
             input = askInput();
             action(demoPlayer, input);
-        } while(input.equalsIgnoreCase("w") || input.equalsIgnoreCase("a") || input.equalsIgnoreCase("s") || input.equalsIgnoreCase("d") || input.equalsIgnoreCase("p"));
+        } while(input.equalsIgnoreCase("w") ||
+                input.equalsIgnoreCase("a") ||
+                input.equalsIgnoreCase("s") ||
+                input.equalsIgnoreCase("d") ||
+                input.equalsIgnoreCase("p"));
 
     }
 
