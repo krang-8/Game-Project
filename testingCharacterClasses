@@ -5,7 +5,8 @@ public class main {
     public static void main(String[] args){
 
 
-        // Testing creating a new character and moving its X and Y cords
+        /* Testing creating a new character and moving its X and Y cords (Shows the change while jumping in increments however doesn't show
+        the change in the X in increments rather all at once) */
         Player obj = new Player("Donald Duck");
         obj.setTo(1,1);
         System.out.println(obj.getCords());
