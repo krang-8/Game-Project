@@ -1,8 +1,6 @@
-package com.company;
-
 import java.util.Scanner;
 
-public class Main {
+public class KeyboardInput {
 
     public static void main(String[] args) {
 
@@ -33,7 +31,7 @@ public class Main {
     // Dash Right
 
     // Dash Left
-    
+
     // Dash Up
 
     // Move Up (Jump)
