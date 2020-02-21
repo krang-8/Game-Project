@@ -12,15 +12,15 @@ public class Main {
 
         String basic = "";
 
-        System.out.println("Enter desired direction of movement...(case doesn't matter)\nW - Jump\nA - Move Left\nD - Move Right\nP - Dash");
+        System.out.println("Enter desired direction of movement...(case doesn't matter)\nW - Jump\nA - Move Left\nS - Crouch\nD - Move Right\nP - Dash");
 
         Scanner keyboard = new Scanner(System.in);
         String input = keyboard.next();
 
-        // System.out.println("S - Crouch"); still not decided if this will be implemented in the game
+        // S - Crouch may or may not be implemented in the Final Version of the Game however is included for the purpose of DEMO 1
 
-        while(input.equalsIgnoreCase("w") || input.equalsIgnoreCase("a") || input.equalsIgnoreCase("d") || input.equalsIgnoreCase("p")){
-            System.out.println("Enter desired direction of movement...(case doesn't matter)\nW - Jump\nA - Move Left\nD - Move Right\nP - Dash");
+        while(input.equalsIgnoreCase("w") || input.equalsIgnoreCase("a") || input.equalsIgnoreCase("s") || input.equalsIgnoreCase("d") || input.equalsIgnoreCase("p")){
+            System.out.println("Enter desired direction of movement...(case doesn't matter)\nW - Jump\nA - Move Left\nS - Crouch\nD - Move Right\nP - Dash");
 
             input = keyboard.next();
         }
@@ -33,6 +33,8 @@ public class Main {
     // Dash Right
 
     // Dash Left
+    
+    // Dash Up
 
     // Move Up (Jump)
 
