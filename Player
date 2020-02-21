@@ -6,6 +6,7 @@ public class Player extends Character{
 
     private boolean jumpStatus = true; // If true the Player is able to call the Jump method
     private boolean dashStatus = true; // If true the Player is able to call the Dash Method
+    private boolean crouchStatus = false;
 
     // These will always belong to the Class ----> Potentially modified by POWER_UPS and ITEMS
     private static final double JUMP_HEIGHT = 4.0;
@@ -26,10 +27,10 @@ public class Player extends Character{
 
     }
 
-    public Player(String name){
+    public Player(){
         // Default constructor of a Player Obj
 
-        super(name); // Call the superclass constructor first
+        super(); // Call the superclass constructor first
     }
 
     // Methods
@@ -50,6 +51,11 @@ public class Player extends Character{
         return PLAYER_SPEED;
 
     }
+    public boolean getCrouchStatus() {
+        return crouchStatus;
+    }
+
+
 
 
     // Setters
@@ -62,6 +68,21 @@ public class Player extends Character{
     public void setDashStatus(boolean value){
         // Setting Dash Status
         this.dashStatus = value;
+    }
+
+    public void setCrouchStatus(boolean crouchStatus) {
+        this.crouchStatus = crouchStatus;
+
+    }
+
+    public void reverseCrouch() {
+        // Reverses the state variable of any player type object
+
+        if (this.crouchStatus) {
+            this.crouchStatus = false;
+        } else {
+            this.crouchStatus = true;
+        } //If state == true then {switch to false}else{switch to true}
     }
 
 
@@ -100,6 +121,7 @@ public class Player extends Character{
         }
     }
 
+
     public void dash(String direction){
         // Potential for KeyBoardInput interaction will allow a player to choose which way to dash
         // Changes the current position of the player with respect to the x_cord after using the dash facing left or right
@@ -125,4 +147,6 @@ public class Player extends Character{
         this.incrementX(-PLAYER_SPEED);
     }
 
+
 }
+
