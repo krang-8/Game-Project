@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class KeyboardInput {
+public class KeyboardInput extends Character {
 
     public static void main(String[] args) {
 
