@@ -2,7 +2,10 @@ import java.util.Scanner;
 
 public class KeyboardInput extends Character {
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
+
+        Player obj = new Player(this.getName());
+
 
 // This version of this class will be for DEMO 1 and will be further updated with JAVA FX for future use
 
@@ -15,28 +18,55 @@ public class KeyboardInput extends Character {
 
         // S - Crouch may or may not be implemented in the Final Version of the Game however is included for the purpose of DEMO 1
 
-        while(input.equalsIgnoreCase("w") || input.equalsIgnoreCase("a") || input.equalsIgnoreCase("s") || input.equalsIgnoreCase("d") || input.equalsIgnoreCase("p")){
+        while (input.equalsIgnoreCase("w")
+                || input.equalsIgnoreCase("a")
+                || input.equalsIgnoreCase("s")
+                || input.equalsIgnoreCase("d")
+                || input.equalsIgnoreCase("pd")  //Dash Right
+                || input.equalsIgnoreCase("pa")  //Dash Left
+                || input.equalsIgnoreCase("pw")) //Dash Up
+                /*|| (input.equalsIgnoreCase("p") && input.equalsIgnoreCase("d"))
+                || (input.equalsIgnoreCase("p") && (input.equalsIgnoreCase("a"))
+                || (input.equalsIgnoreCase("p") && input.equalsIgnoreCase("w"))))*/ {
             System.out.println("Enter desired direction of movement...(case doesn't matter)\nW - Jump\nA - Move Left\nS - Crouch\nD - Move Right\nP - Dash");
 
             input = keyboard.next();
         }
+
+
+        // Move Right
+        while (input.equals("d")){
+            obj.moveRight();
+        }
+        // Move Left
+        while (input.equals("a")){
+            obj.moveLeft();
+        }
+        // Move Up (Jump)
+        while (input.equals("w")){
+            obj.jump();
+        }
+
+        // Crouch (This may or may not be of use in the final game)
+
+        // Dash Right
+        while (input.equalsIgnoreCase("p") && input.equalsIgnoreCase("d")){
+            obj.dash("RIGHT");
+        }
+
+        // Dash Left
+        while (input.equalsIgnoreCase("p") && input.equalsIgnoreCase("a")){
+            obj.dash("LEFT");
+        }
+
+        // Dash Up
+        while (input.equalsIgnoreCase("p") && input.equalsIgnoreCase("w")){
+            obj.dash("UP");
+        }
+
+
+
     }
-
-    // Move Right
-
-    // Move Left
-
-    // Dash Right
-
-    // Dash Left
-
-    // Dash Up
-
-    // Move Up (Jump)
-
-    // Crouch (This may or may not be of use in the final game)
-
-
 }
 
 
