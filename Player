@@ -111,6 +111,7 @@ public class Player extends Character{
 
     }
 
+
     public void moveRight() {
         // This will take the objects x_cord and move it according to the Player speed to the right
 
