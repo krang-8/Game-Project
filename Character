@@ -1,9 +1,9 @@
 public class Character {
-    // This is the Parent class for Player and Boss classes
+    // This is the Superclass for Player and Boss classes
 
                                              // Instance variables
-    private double x_cord;
-    private double y_cord;
+    private double x_cord = 0.0;
+    private double y_cord = 0.0;
     private int maxHealth;
     private int health;
     private String name = "UNNAMED";
@@ -78,7 +78,7 @@ public class Character {
     public String getCords(){
         // Returns the String for current cords in form " (x,y) "
 
-        return "(" + this.getX() + "," + this.getY() + ")";
+        return this.getName() + "'s Current Coordinates: (" + this.getX() + "," + this.getY() + ")";
     }
 
 
@@ -111,10 +111,14 @@ public class Character {
         this.state = changeTo;
     }
 
-    public void reverseState(Character unit){
-        // Reverses the state variable of a character object
+    public void reverseState() {
+        // Reverses the state variable of any character type object
 
-        if (unit.state){unit.state = false;}else{unit.state = true;} //If state == true then {switch to false}else{switch to true}
+        if (this.state) {
+            this.state = false;
+        } else {
+            this.state = true;
+        } //If state == true then {switch to false}else{switch to true}
     }
 
 
