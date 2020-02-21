@@ -6,14 +6,15 @@ public class Player extends Character{
 
     private boolean jumpStatus = true; // If true the Player is able to call the Jump method
     private boolean dashStatus = true; // If true the Player is able to call the Dash Method
-    private boolean crouchStatus = false;
+    private boolean crouchStatus = false; // For future implementation; dashing while crouched will result in a side where the players hit box should be halved
 
     // These will always belong to the Class ----> Potentially modified by POWER_UPS and ITEMS
     private static final double JUMP_HEIGHT = 4.0;
-    private static final double ABILITY_SPEED = 0.5; // This value is used for the ability functions to change the speed at which a player completes a jump/dash
+    private static final double ABILITY_SPEED = 1.0; // This value is used for the ability functions to change the speed at which a player completes a jump/dash
     private static final double DASH_LENGTH = 5.0;
     private static final double PLAYER_SPEED = 1.0;
 
+    private String playerDirection = "RIGHT"; // "LEFT" = A   "RIGHT" = D
 
 
 
@@ -29,7 +30,6 @@ public class Player extends Character{
 
     public Player(){
         // Default constructor of a Player Obj
-
         super(); // Call the superclass constructor first
     }
 
@@ -52,7 +52,13 @@ public class Player extends Character{
 
     }
     public boolean getCrouchStatus() {
+        // Return the player crouch Status
         return crouchStatus;
+    }
+
+    public String getPlayerDirection(){
+        // Return the player playerDirection
+        return playerDirection;
     }
 
 
@@ -72,7 +78,6 @@ public class Player extends Character{
 
     public void setCrouchStatus(boolean crouchStatus) {
         this.crouchStatus = crouchStatus;
-
     }
 
     public void reverseCrouch() {
@@ -85,6 +90,11 @@ public class Player extends Character{
         } //If state == true then {switch to false}else{switch to true}
     }
 
+    public void setPlayerDirection(String direction){
+
+        this.playerDirection = direction;
+    }
+
 
 
 
@@ -94,8 +104,9 @@ public class Player extends Character{
     public void jump(){
         // Current version of this method will instantly move the character to the y_cord + JUMP_HEIGHT... wait a bit and fall back down
         // Version with GUI should gradually raise the players Y value then gradually lower it
-        // Currently we do not have ground so when if comes to the fall of the jump it will treat y_cord == 1.0 as the ground
+        // Currently we do not have ground so when if comes to the fall of the jump it will treat y_cord == 0.0 as the ground
 
+        if (crouchStatus){return;} // Can't Jump while crouching so we just return
 
         double perTick = ABILITY_SPEED / JUMP_HEIGHT; // This is the value we need to add to the players cords each loop
         double initialY = this.getY();
@@ -112,7 +123,7 @@ public class Player extends Character{
 
         }
 
-        while (this.getY() > 1.0){
+        while (this.getY() > 0.0){
             // Falling action of a jump
 
             this.incrementY(-perTick);
@@ -125,12 +136,14 @@ public class Player extends Character{
     public void dash(String direction){
         // Potential for KeyBoardInput interaction will allow a player to choose which way to dash
         // Changes the current position of the player with respect to the x_cord after using the dash facing left or right
-        if (direction.toUpperCase().equals("RIGHT")) { this.incrementX(DASH_LENGTH); }
-        if (direction.toUpperCase().equals("LEFT")) { this.incrementX(-DASH_LENGTH); }
+        if (playerDirection.toUpperCase().equals("RIGHT")) { this.incrementX(DASH_LENGTH); }
+        if (playerDirection.toUpperCase().equals("LEFT")) { this.incrementX(-DASH_LENGTH); }
 
-        // Changes the current position of the player with respect of the y_cord after using the dash while in air (Usable as a form of double jump)
-        if (direction.toUpperCase().equals("UP")) { this.incrementY(DASH_LENGTH); }
+        /* Changes the current position of the player with respect of the y_cord after using the dash while in air (Usable as a form of double jump)
+        if (playerDirection.toUpperCase().equals("UP")) { this.incrementY(DASH_LENGTH); }
 
+            This was meant for a potential jump dash combo but we will instead just implement a double jump
+         */
     }
 
 
@@ -138,15 +151,14 @@ public class Player extends Character{
         // This will take the objects x_cord and move it according to the Player speed to the right
 
         this.incrementX(PLAYER_SPEED);
+        this.setPlayerDirection("RIGHT");
     }
 
 
     public void moveLeft() {
         // This will like the above method simply add the PLAYER_SPEED to the objects x_cords value
-
         this.incrementX(-PLAYER_SPEED);
+        this.setPlayerDirection("LEFT");
     }
-
-
 }
 
