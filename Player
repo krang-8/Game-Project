@@ -1,7 +1,7 @@
 public class Player extends Character{
     // The Character that the user will control
 
-                                                      // Instance Variables
+    // Instance Variables
 
 
     private boolean jumpStatus = true; // If true the Player is able to call the Jump method
@@ -18,7 +18,7 @@ public class Player extends Character{
 
 
 
-                                                     // Constructor
+    // Constructor
 
     public Player(Character original) {
         // Takes a Character obj and makes it a Player obj
@@ -32,9 +32,9 @@ public class Player extends Character{
         super(name); // Call the superclass constructor first
     }
 
-                                                    // Methods
+    // Methods
 
-                                                    // Getters
+    // Getters
 
     public boolean getJumpStatus(){
         // Returns the value of jumpStatus
@@ -52,7 +52,7 @@ public class Player extends Character{
     }
 
 
-                                                    // Setters
+    // Setters
 
     public void setJumpStatus(boolean value){
         // Setting Jump Status
@@ -67,8 +67,8 @@ public class Player extends Character{
 
 
 
-                                                      // Actions
-        // KeyBoardInput class will use these methods
+    // Actions
+    // KeyBoardInput class will use these methods
 
     public void jump(){
         // Current version of this method will instantly move the character to the Ycord + JUMPHEIGHT... wait a bit and fall back down
@@ -87,11 +87,11 @@ public class Player extends Character{
             // The value for ABILITYSPEED; if higher will complete the jump action faster in less frames / Increments
 
             this.incrementY(perTick);
-            System.out.println(this.getName() + "'s current coordinates are: " + this.getCords()); // This is just used for demo purposes in the full game this should display the player on the screen with the new coords
+            System.out.println(this.getName() + "'s current coordinates are: " + this.getCords()); // This is just used for demo purposes in the full game this should display the player on the screen with the new cords
 
         }
 
-        while (this.getY() > 0.0){
+        while (this.getY() > 1.0){
             // Falling action of a jump
 
             this.incrementY(-perTick);
@@ -103,11 +103,11 @@ public class Player extends Character{
     public void dash(String direction){
         // Potential for KeyBoardInput interaction will allow a player to choose which way to dash
         // Changes the current position of the player with respect to the x_cord after using the dash facing left or right
-        if (direction.toUpperCase() == "RIGHT") { this.incrementX(DASHLENGTH); }
-        if (direction.toUpperCase() == "LEFT") { this.incrementX(-DASHLENGTH); }
-        
+        if (direction.toUpperCase().equals("RIGHT")) { this.incrementX(DASHLENGTH); }
+        if (direction.toUpperCase().equals("LEFT")) { this.incrementX(-DASHLENGTH); }
+
         // Changes the current position of the player with respect of the y_cord after using the dash while in air (Usable as a form of double jump)
-        if (direction.toUpperCase() == "UP") { this.incrementY(DASHLENGTH); }
+        if (direction.toUpperCase().equals("UP")) { this.incrementY(DASHLENGTH); }
 
     }
 
@@ -119,7 +119,7 @@ public class Player extends Character{
 
 
     public void moveLeft() {
-        // This will like the above method simply add the PLAYERSPEED to the objects y_cords value
+        // This will like the above method simply add the PLAYERSPEED to the objects x_cords value
 
         this.incrementX(-PLAYERSPEED);
     }
