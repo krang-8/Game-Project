@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
-public class KeyboardInput{
+public class KeyboardInput extends mainMenu{
 
     //Variables
     private static Scanner keyboard = new Scanner(System.in);
     private static Player demoPlayer = new Player(); // This is the Player object that belongs to this class
-
+    private static mainMenu mainMenu;
 
 
     // Methods
@@ -57,6 +57,7 @@ public class KeyboardInput{
 
 
         // Main menu
+        userSelection(introScreen());
 
         //Creating demoPlayer with the user
 
@@ -92,4 +93,8 @@ public class KeyboardInput{
                 input.equalsIgnoreCase("p"));
 
     }
+
+
+
+
 }
