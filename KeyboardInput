@@ -10,7 +10,7 @@ public class KeyboardInput{
 
     // Methods
 
-    public static void action(Player target, String action){
+    public static void action(Player target, String action) throws InterruptedException {
         // Will take input through the Scanner object and apply the action to the desired object
 
 
@@ -30,9 +30,6 @@ public class KeyboardInput{
         // Dash
         if (action.equalsIgnoreCase("P")){target.dash(target.getPlayerDirection());
         System.out.println(target.getCords() + "\n");}
-
-        // Move Up (Jump)
-
 
         // Crouch (This may or may not be of use in the final game)
         if (action.equalsIgnoreCase("S")){target.reverseCrouch();
@@ -58,6 +55,8 @@ public class KeyboardInput{
 // This version of this class will be for DEMO 1 and will be further updated with JAVA FX for future use
 // S - Crouch may or may not be implemented in the Final Version of the Game however is included for the purpose of DEMO 1
 
+
+        // Main menu
 
         //Creating demoPlayer with the user
 
@@ -93,8 +92,4 @@ public class KeyboardInput{
                 input.equalsIgnoreCase("p"));
 
     }
-
-
-
-
 }
