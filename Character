@@ -124,7 +124,6 @@ public class Character {
     public void incrementY(double increment){
         //Useful for jumping and falling movements for player
         this.y_cord = this.y_cord += increment;
-
     }
 
     public void setTo(double newX, double newY){
