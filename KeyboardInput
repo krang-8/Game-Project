@@ -1,11 +1,15 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class KeyboardInput extends mainMenu{
+public class KeyboardInput extends mainMenu {
 
     //Variables
     private static Scanner keyboard = new Scanner(System.in);
     private static Player demoPlayer = new Player(); // This is the Player object that belongs to this class
     private static mainMenu mainMenu;
+    private static ArrayList<Traps> trapsList = new ArrayList<Traps>();
+    private static double lastFrameX = 20; // Once the player crossed this the game is considered won for the demo
+    private static boolean gameIsWon = false;
 
 
     // Methods
@@ -14,26 +18,35 @@ public class KeyboardInput extends mainMenu{
         // Will take input through the Scanner object and apply the action to the desired object
 
 
-
         // Move Right
-        if (action.equalsIgnoreCase("D")){target.moveRight();
-        System.out.println(target.getCords() + "\n");}
+        if (action.equalsIgnoreCase("D")) {
+            target.moveRight();
+            System.out.println(target.getCords() + "\n");
+        }
 
         // Move Left
-        if (action.equalsIgnoreCase("A")){target.moveLeft();
-        System.out.println(target.getCords() + "\n");}
+        if (action.equalsIgnoreCase("A")) {
+            target.moveLeft();
+            System.out.println(target.getCords() + "\n");
+        }
 
         // Jump
-        if (action.equalsIgnoreCase("W")){target.jump();
-        System.out.println(target.getCords() + "\n");}
+        if (action.equalsIgnoreCase("W")) {
+            target.jump();
+            System.out.println("\n" + target.getCords() + "\n");
+        }
 
         // Dash
-        if (action.equalsIgnoreCase("P")){target.dash(target.getPlayerDirection());
-        System.out.println(target.getCords() + "\n");}
+        if (action.equalsIgnoreCase("P")) {
+            target.dash(target.getPlayerDirection());
+            System.out.println(target.getCords() + "\n");
+        }
 
         // Crouch (This may or may not be of use in the final game)
-        if (action.equalsIgnoreCase("S")){target.reverseCrouch();
-            System.out.println("Crouch Status: " + target.getCrouchStatus());}
+        if (action.equalsIgnoreCase("S")) {
+            target.reverseCrouch();
+            System.out.println("Crouch Status: " + target.getCrouchStatus());
+        }
 
     }
 
@@ -42,13 +55,19 @@ public class KeyboardInput extends mainMenu{
         //Prompt the user with input and pass that to the action method
 
         Thread.sleep(1000);
-        System.out.println("Enter desired direction of movement for " + demoPlayer.getName() +"...(case doesn't matter)\nW - Jump\nA - Move Left\nS - Crouch\nD - Move Right\nP - Dash");
+        System.out.println("\nEnter desired direction of movement for " + demoPlayer.getName() + "...(case doesn't matter)\nW - Jump\nA - Move Left\nS - Crouch\nD - Move Right\nP - Dash");
         return keyboard.next();
     }
 
+    public static void toString(ArrayList<Traps> trapList) {
+        // Displays the locations of the traps
 
+        System.out.println("Traps are located at these coordinates");
+        for (Traps b : trapList) {
+            System.out.print("(" + b.getX_Cord() + "," + b.getY_Cord() + ") ");
+        }
 
-
+    }
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -57,44 +76,54 @@ public class KeyboardInput extends mainMenu{
 
 
         // Main menu
-        userSelection(introScreen());
+        do {
+            userSelection(introScreen());
 
-        //Creating demoPlayer with the user
+            // Traps
+            trapsList.add(new Traps(5, 0));
+            trapsList.add(new Traps(9, 0));
+            trapsList.add(new Traps(14, 0));
+            trapsList.add(new Traps(15, 0));
+            trapsList.add(new Traps(17, 0));
+
+            //Creating demoPlayer with the user
 
             // Setting Name
-        System.out.println("Please name your Player: ");
-        String input = keyboard.next();
-        demoPlayer.setName(input);
+            System.out.println("Please name your Player: ");
+            String input = keyboard.next();
+            demoPlayer.setName(input);
 
             // Setting MaxHealth
-        demoPlayer.setMaxHealth(3);
-        demoPlayer.setHealth(3);
-        System.out.println(demoPlayer.getName() + "'s health is currently: " + demoPlayer.getHealth() + "/" + demoPlayer.getMaxHealth());
+            demoPlayer.setMaxHealth(3);
+            demoPlayer.setHealth(3);
+            System.out.println(demoPlayer.getName() + "'s health is currently: " + demoPlayer.getHealth() + "/" + demoPlayer.getMaxHealth());
 
             // Ability status'
-                //Jump
-        System.out.println(demoPlayer.getName() + "'s Current Jump Status: " + demoPlayer.getJumpStatus());
-                //Dash
-        System.out.println(demoPlayer.getName() + "'s Current Dash Status: " + demoPlayer.getDashStatus());
-                //Crouch
-        System.out.println(demoPlayer.getName() + "'s Current Crouch Status: " + demoPlayer.getCrouchStatus());
+            //Jump
+            System.out.println(demoPlayer.getName() + "'s Current Jump Status: " + demoPlayer.getJumpStatus());
+            //Dash
+            System.out.println(demoPlayer.getName() + "'s Current Dash Status: " + demoPlayer.getDashStatus());
+            //Crouch
+            System.out.println(demoPlayer.getName() + "'s Current Crouch Status: " + demoPlayer.getCrouchStatus());
 
 
+            System.out.println(demoPlayer.getCords() + "\n");
+            do {
+                demoPlayer.deathCheck(trapsList);
+                toString(trapsList);
+                input = askInput();
+                action(demoPlayer, input);
+                gameIsWon = demoPlayer.winCheck(lastFrameX);
+            } while ((input.equalsIgnoreCase("w") ||
+                      input.equalsIgnoreCase("a") ||
+                      input.equalsIgnoreCase("s") ||
+                      input.equalsIgnoreCase("d") ||
+                      input.equalsIgnoreCase("p"))&&
+                      !gameIsWon);
 
 
-        System.out.println(demoPlayer.getCords() + "\n");
-        do {
-            input = askInput();
-            action(demoPlayer, input);
-        } while(input.equalsIgnoreCase("w") ||
-                input.equalsIgnoreCase("a") ||
-                input.equalsIgnoreCase("s") ||
-                input.equalsIgnoreCase("d") ||
-                input.equalsIgnoreCase("p"));
+        } while (true);
+
 
     }
-
-
-
-
 }
