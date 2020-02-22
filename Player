@@ -1,4 +1,5 @@
 public class Player extends Character{
+
     // The Character that the user will control
 
     // Instance Variables
@@ -9,12 +10,14 @@ public class Player extends Character{
     private boolean crouchStatus = false; // For future implementation; dashing while crouched will result in a side where the players hit box should be halved
 
     // These will always belong to the Class ----> Potentially modified by POWER_UPS and ITEMS
-    private static final double JUMP_HEIGHT = 4.0;
-    private static final double ABILITY_SPEED = 1.0; // This value is used for the ability functions to change the speed at which a player completes a jump/dash
-    private static final double DASH_LENGTH = 5.0;
-    private static final double PLAYER_SPEED = 1.0;
+    private static final double JUMP_HEIGHT = 1.5;
+    private static final double ABILITY_SPEED = 0.75;
+    // This value is used for the ability functions to change the speed at which a player completes a jump/dash
+    private static final double DASH_MULTIPLIER = 3.0;
+    // When in a dash PLAYER_SPEED temporarily for the duration of the dash will become PLAYER_SPEED * DASH_MULTIPLIER
 
     private String playerDirection = "RIGHT"; // "LEFT" = A   "RIGHT" = D
+    private double playerSpeed = 1.0;
 
 
 
@@ -46,9 +49,9 @@ public class Player extends Character{
         return dashStatus;
     }
 
-    public double getPLAYER_SPEED(){
+    public double getPlayerSpeed(){
         //Returns the Players Speed value
-        return PLAYER_SPEED;
+        return playerSpeed;
 
     }
     public boolean getCrouchStatus() {
@@ -105,11 +108,18 @@ public class Player extends Character{
         // Current version of this method will instantly move the character to the y_cord + JUMP_HEIGHT... wait a bit and fall back down
         // Version with GUI should gradually raise the players Y value then gradually lower it
         // Currently we do not have ground so when if comes to the fall of the jump it will treat y_cord == 0.0 as the ground
+        // Needs to keep x momentum through the jump
 
-        if (crouchStatus){return;} // Can't Jump while crouching so we just return
+        if (crouchStatus){
+            System.out.println("Player can not jump while crouched..."); return;} // Can't Jump while crouching so we just return
 
-        double perTick = ABILITY_SPEED / JUMP_HEIGHT; // This is the value we need to add to the players cords each loop
+        double perTickY = ABILITY_SPEED / JUMP_HEIGHT; // This is the value we need to add to the players y_cord each loop
+        double perTickX = ABILITY_SPEED / playerSpeed; // This is the value we need to add to the players y_cord each loop
         double initialY = this.getY();
+        double initialX = this.getX(); // By the end of the jump action the x value needs to be moved by 2 * PLAYER_SPEED
+        System.out.println(perTickX);
+        System.out.println(perTickY);
+
 
 
         while (this.getY() < initialY + JUMP_HEIGHT ){
@@ -117,27 +127,41 @@ public class Player extends Character{
             // The rising action of a jump
             // Each loop of this will update the players location gradually upward
             // The value for ABILITY_SPEED; if higher will complete the jump action faster in less frames / Increments
+            // Each loop of this will be a single frame in the game
+            // ABILITY_SPEED is a variable that we can change later to make this go faster or slower
 
-            this.incrementY(perTick);
+            this.incrementY(perTickY);
+            this.incrementX(perTickX);
+
             System.out.println(this.getName() + "'s current coordinates are: " + this.getCords()); // This is just used for demo purposes in the full game this should display the player on the screen with the new cords
 
         }
 
-        while (this.getY() > 0.0){
+        while (this.getY() > (0.01)){
+            
             // Falling action of a jump
 
-            this.incrementY(-perTick);
+            this.incrementY(-perTickY);
+            this.incrementX(perTickX);
             System.out.println(this.getName() + "'s current coordinates are: " + this.getCords());
 
         }
     }
 
 
-    public void dash(String direction){
+    public void dash(String direction) throws InterruptedException {
         // Potential for KeyBoardInput interaction will allow a player to choose which way to dash
         // Changes the current position of the player with respect to the x_cord after using the dash facing left or right
-        if (playerDirection.toUpperCase().equals("RIGHT")) { this.incrementX(DASH_LENGTH); }
-        if (playerDirection.toUpperCase().equals("LEFT")) { this.incrementX(-DASH_LENGTH); }
+        this.playerSpeed *= DASH_MULTIPLIER;
+        if (playerDirection.toUpperCase().equals("RIGHT")) {incrementX(getPlayerSpeed()); }
+        if (playerDirection.toUpperCase().equals("LEFT")) { incrementX(-getPlayerSpeed()); }
+
+        Thread.sleep(1000);
+        /* Essentially waits a second before resetting playerSpeed to original
+         in order for the dash -- > jump combo to work so that jumping after dashing
+         will let the player have a further jump
+         */
+        this.playerSpeed /= DASH_MULTIPLIER;
 
         /* Changes the current position of the player with respect of the y_cord after using the dash while in air (Usable as a form of double jump)
         if (playerDirection.toUpperCase().equals("UP")) { this.incrementY(DASH_LENGTH); }
@@ -150,14 +174,14 @@ public class Player extends Character{
     public void moveRight() {
         // This will take the objects x_cord and move it according to the Player speed to the right
 
-        this.incrementX(PLAYER_SPEED);
+        this.incrementX(getPlayerSpeed());
         this.setPlayerDirection("RIGHT");
     }
 
 
     public void moveLeft() {
         // This will like the above method simply add the PLAYER_SPEED to the objects x_cords value
-        this.incrementX(-PLAYER_SPEED);
+        this.incrementX(-getPlayerSpeed());
         this.setPlayerDirection("LEFT");
     }
 }
