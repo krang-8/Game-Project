@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Player extends Character{
 
     // The Character that the user will control
@@ -113,13 +115,14 @@ public class Player extends Character{
         if (crouchStatus){
             System.out.println("Player can not jump while crouched..."); return;} // Can't Jump while crouching so we just return
 
+        int directionModifier = 1;
+        if (this.getPlayerDirection().equalsIgnoreCase("LEFT")){directionModifier = -1;}
+        // is facing left we need to be incrementing out x to the left using negative perTickX values
+
         double perTickY = ABILITY_SPEED / JUMP_HEIGHT; // This is the value we need to add to the players y_cord each loop
-        double perTickX = ABILITY_SPEED / playerSpeed; // This is the value we need to add to the players y_cord each loop
+        double perTickX = ABILITY_SPEED / playerSpeed * directionModifier; // This is the value we need to add to the players y_cord each loop
         double initialY = this.getY();
         double initialX = this.getX(); // By the end of the jump action the x value needs to be moved by 2 * PLAYER_SPEED
-        System.out.println(perTickX);
-        System.out.println(perTickY);
-
 
 
         while (this.getY() < initialY + JUMP_HEIGHT ){
@@ -138,7 +141,6 @@ public class Player extends Character{
         }
 
         while (this.getY() > (0.01)){
-            
             // Falling action of a jump
 
             this.incrementY(-perTickY);
@@ -149,14 +151,14 @@ public class Player extends Character{
     }
 
 
-    public void dash(String direction) throws InterruptedException {
+    public void dash(String direction){
         // Potential for KeyBoardInput interaction will allow a player to choose which way to dash
         // Changes the current position of the player with respect to the x_cord after using the dash facing left or right
         this.playerSpeed *= DASH_MULTIPLIER;
         if (playerDirection.toUpperCase().equals("RIGHT")) {incrementX(getPlayerSpeed()); }
         if (playerDirection.toUpperCase().equals("LEFT")) { incrementX(-getPlayerSpeed()); }
 
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         /* Essentially waits a second before resetting playerSpeed to original
          in order for the dash -- > jump combo to work so that jumping after dashing
          will let the player have a further jump
@@ -183,6 +185,50 @@ public class Player extends Character{
         // This will like the above method simply add the PLAYER_SPEED to the objects x_cords value
         this.incrementX(-getPlayerSpeed());
         this.setPlayerDirection("LEFT");
+    }
+
+    public void deathCheck(ArrayList<Traps> trapsList) throws InterruptedException {
+        // To check if a player is on a trap
+        // This method will get the players current X and Y cords and see if they match any of the Traps in the Trap list
+        // If a player is on a trap the Trap's damagePlayer() method will be called on the player
+
+        double playerYCord = this.getY();
+        double playerXCord = this.getX();
+
+        for (Traps trap : trapsList){
+            // Iterating through the ArrayList
+
+            if(trap.getX_Cord() == (playerXCord)){
+
+                if(trap.getY_Cord() == playerYCord){
+                    // This is when we have a player on top of a trap
+
+                    trap.damagePlayer(this); // Player will die
+                    System.out.println("OOoOOooOf You have died :( \nReturning you to the start of the level...\n");
+                    Thread.sleep(2000);
+                    System.out.println(this.getCords());
+                    this.setTo(0,0); // Player will be reset to (0,0) the start of the level
+
+                }
+
+            }
+
+        }
+
+
+    }
+
+
+    public boolean winCheck(double lastFrameX){
+        // Check if the player crosses the frame --> will result in a victory dialogue
+
+        if(this.getX() >= lastFrameX){
+            // Victory!!!
+            System.out.println("YOU JUST WON THE GAME CONGRATS...\n\n\n\n");
+            return true;
+
+        }
+        return false;
     }
 }
 
