@@ -3,14 +3,11 @@ import java.util.Scanner;
 public class mainMenu {
 
     private static String gameName = "Untitled";
-    private static String startGame = "Start Game";
-    private static String settings = "Settings";
-    private static String quit = "Quit";
-
+    
     // Play, Settings, Quit
 
-    public String introScreen() {
-        String printIntro = ("(1) "+ gameName + "\n" + "(2) " + startGame + "\n" + "(3) " + settings);
+    public static int introScreen() {
+        String printIntro = ("Welcome to " +gameName + "\n" + "(1) Start Game" + "\n" + "(2) Settings " + "\n" + "(3) Quit");
         System.out.println(printIntro);
         System.out.println("Choose a option for the game!");
         Scanner introInputScanner = new Scanner(System.in);
@@ -21,7 +18,32 @@ public class mainMenu {
             introInput = introInputScanner.nextInt();
 
         }
-        return printIntro;
+        return introInput;
+    }
+    // Method
+    
+    public static void startGame(){
+        // If this is selected proceed to the game
+    }
+    
+    public static void settings(){
+        // If this is selected user will be able to modify the settings of the game
+    }
+    
+    public static void quit(){
+        // If this is selected the game will exit
+        System.exit(0);
+    }
+    public static void userSelection(int option){
+        if(option == 1){
+            startGame();
+        }
+        if(option == 2){
+            settings();
+        }
+        if(option == 3){
+            quit();
+        }
     }
 
 
