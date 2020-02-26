@@ -8,3 +8,8 @@ CPSC233
 
 
 // Gotta add how to compile the code and run it as stated in one of the lectures. We should add this in the meeting.
+
+                                                    // COMPILING
+       
+1. Import KeyboardInput, Character, Player & Traps.       
+                                                    
