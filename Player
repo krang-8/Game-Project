@@ -33,9 +33,10 @@ public class Player extends Character{
 
     }
 
-    public Player(){
+    public Player(String name){
         // Default constructor of a Player Obj
-        super(); // Call the superclass constructor first
+        super(name); // Call the superclass constructor first
+
     }
 
     // Methods
@@ -230,5 +231,32 @@ public class Player extends Character{
         }
         return false;
     }
-}
 
+    /*
+    public boolean moveValid(ArrayList<Traps> trapList, double spaceToMove) {
+        // when moving left or right we must ensure that as we pass that there is no trap between current X and X + playerSpeed
+
+        int directionModifier = 1;
+        if (this.getPlayerDirection().equalsIgnoreCase("LEFT")){directionModifier = -1;} // If the player is facing left we need to check a movement to the left
+
+        for (Traps b : trapList) {
+            // Looping through the trapList
+
+            if (this.getX() < b.getX_Cord()) {
+                // If the trap is in front of the players current X value then we proceed
+
+                if (b.getX_Cord() < this.getX() + (spaceToMove * directionModifier)) {
+                    // If the trap is behind where the player will be after the complete the movement
+                    // Then the player would move straight over the trap and DIE
+
+                    return false;
+
+                }
+
+            }
+        }
+        return true;
+    }
+}
+*/
+}
