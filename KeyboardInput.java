@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Scanner;
+        import java.util.Scanner;
 
 public class KeyboardInput extends mainMenu {
 
@@ -33,7 +33,7 @@ public class KeyboardInput extends mainMenu {
 
         // Jump
         if (action.equalsIgnoreCase("W")) {
-            target.jump();
+            target.jump(trapsList);
         }
 
         // Dash
@@ -124,9 +124,6 @@ public class KeyboardInput extends mainMenu {
                     input.equalsIgnoreCase("p"))&&
                     !gameIsWon);
 
-
         } while (true);
-
-
     }
 }
