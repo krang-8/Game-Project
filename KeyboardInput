@@ -5,7 +5,7 @@ public class KeyboardInput extends mainMenu {
 
     //Variables
     private static Scanner keyboard = new Scanner(System.in);
-    private static Player demoPlayer = new Player(); // This is the Player object that belongs to this class
+    private static Player demoPlayer = new Player("DemoPlayer"); // This is the Player object that belongs to this class
     private static mainMenu mainMenu;
     private static ArrayList<Traps> trapsList = new ArrayList<Traps>();
     private static double lastFrameX = 20; // Once the player crossed this the game is considered won for the demo
@@ -21,13 +21,13 @@ public class KeyboardInput extends mainMenu {
         // Move Right
         if (action.equalsIgnoreCase("D")) {
             target.moveRight();
-            System.out.println(target.getCords() + "\n");
+
         }
 
         // Move Left
         if (action.equalsIgnoreCase("A")) {
             target.moveLeft();
-            System.out.println(target.getCords() + "\n");
+
         }
 
         // Jump
@@ -115,11 +115,11 @@ public class KeyboardInput extends mainMenu {
                 action(demoPlayer, input);
                 gameIsWon = demoPlayer.winCheck(lastFrameX);
             } while ((input.equalsIgnoreCase("w") ||
-                      input.equalsIgnoreCase("a") ||
-                      input.equalsIgnoreCase("s") ||
-                      input.equalsIgnoreCase("d") ||
-                      input.equalsIgnoreCase("p"))&&
-                      !gameIsWon);
+                    input.equalsIgnoreCase("a") ||
+                    input.equalsIgnoreCase("s") ||
+                    input.equalsIgnoreCase("d") ||
+                    input.equalsIgnoreCase("p"))&&
+                    !gameIsWon);
 
 
         } while (true);
