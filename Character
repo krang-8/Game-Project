@@ -1,22 +1,21 @@
+import java.util.ArrayList;
+
 public class Character {
     // This is the Superclass for Player and Boss classes
 
-                                             // Instance variables
+    // Instance variables
     private double x_cord = 0.0;
     private double y_cord = 0.0;
     private int maxHealth;
     private int health;
     private String name = "UNNAMED";
     private boolean state;
-    private int WIDTH = 10 //temporary height and width, will probably be changed later to adjust size
-    private int HEIGHT = 10
 
 
+    // Constructor
 
-                                             // Constructor
 
-
-    public Character(Character original){
+    public Character(Character original) {
         // Copy of Character to new Character obj
         this.x_cord = original.getX();
         this.y_cord = original.getY();
@@ -31,79 +30,71 @@ public class Character {
         this.name = name;
     }
 
-    Character(){
-        // Default constructor
-        // Leaving this empty lets us create Player constructors that are of type character as well
+    // Methods
 
-    }
-                                            // Methods
-
-                                            //Getters
-    public double getX(){
+    //Getters
+    public double getX() {
         // Returns any Character object's x_cord
         return x_cord;
     }
 
-    public double getY(){
+    public double getY() {
         // Returns any Character object's y_cord
         return y_cord;
     }
 
-    public int getMaxHealth(){
+    public int getMaxHealth() {
         // Returns the Character objects maxHealth;
         return maxHealth;
 
     }
 
-    public int getHealth(){
+    public int getHealth() {
         // Returns any Character object's health
         return health;
     }
 
-    public String getName(){
+    public String getName() {
         // Returns any Character object's name
         return name;
     }
 
-    public boolean getState(){
+    public boolean getState() {
         // Gets weather or not the character is alive or dead
         return state;
     }
 
-    public String getCords(){
+    public String getCords() {
         // Returns the String for current cords in form " (x,y) "
 
         return this.getName() + "'s Current Coordinates: (" + this.getX() + "," + this.getY() + ")";
     }
 
 
-
-
-
-                                            //Setters
-    public void setName(String name){
+    //Setters
+    public void setName(String name) {
         //Sets the name for the object
         this.name = name;
     }
 
-    public void setMaxHealth(int maxHealth){
+    public void setMaxHealth(int maxHealth) {
         //Sets Maximum health value
         //Useful for healing and for boss fighting
         this.maxHealth = maxHealth;
     }
 
-    public void setHealth(int health){
+    public void setHealth(int health) {
         // Setting current health value
         this.health = health;
     }
 
-    public void increment_health(int increment){
+    public void increment_health(int increment) {
         //Increments health up or down - Used for damage method later...
 
         this.health += increment;
     }
 
-    public void setState(boolean changeTo){
+    public void setState(boolean changeTo) {
         // Changes the Value of State variable showing the object should be dead or alive
         this.state = changeTo;
     }
@@ -118,22 +109,37 @@ public class Character {
     }
 
 
-    public void incrementX(double increment){
+    public void incrementX(double playerSpeed, boolean print) {
         // Useful for movement methods for Player and Boss class
-        this.x_cord = this.x_cord += increment;
+
+        for (double c = 0.0; c < playerSpeed; c += 0.25) {
+            this.x_cord += 0.25;
+
+            if (print) {
+                System.out.println(this.getCords() + "\n");
+            }
+
+
+        }
     }
 
-    public void incrementY(double increment){
+    public void incrementY(double increment) {
         //Useful for jumping and falling movements for player
-        this.y_cord = this.y_cord += increment;
+
+
+        this.y_cord += increment;
+
+
     }
 
-    public void setTo(double newX, double newY){
+    public void setTo(double newX, double newY) {
         // Moves the X cord and Y cord to the new location
         // Sort of like a 'teleport'
         this.x_cord = newX;
         this.y_cord = newY;
 
     }
-
 }
+
+ 
+
