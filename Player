@@ -5,12 +5,11 @@ public class Player extends Character{
     // The Character that the user will control
 
     // Instance Variables
-
-
+    
     private boolean jumpStatus = true; // If true the Player is able to call the Jump method
     private boolean dashStatus = true; // If true the Player is able to call the Dash Method
     private boolean crouchStatus = false; // For future implementation; dashing while crouched will result in a side where the players hit box should be halved
-
+    
     // These will always belong to the Class ----> Potentially modified by POWER_UPS and ITEMS
     private static final double JUMP_HEIGHT = 1.5;
     private static final double ABILITY_SPEED = 0.75;
@@ -30,13 +29,11 @@ public class Player extends Character{
     public Player(Character original) {
         // Takes a Character obj and makes it a Player obj
         super(original);
-
     }
 
     public Player(String name){
         // Default constructor of a Player Obj
         super(name); // Call the superclass constructor first
-
     }
 
     // Methods
@@ -51,63 +48,48 @@ public class Player extends Character{
         // Returns the value of dashStatus
         return dashStatus;
     }
-
     public double getPlayerSpeed(){
         //Returns the Players Speed value
         return playerSpeed;
-
     }
     public boolean getCrouchStatus() {
         // Return the player crouch Status
         return crouchStatus;
     }
-
     public String getPlayerDirection(){
         // Return the player playerDirection
         return playerDirection;
     }
-
-
-
-
+    
     // Setters
 
     public void setJumpStatus(boolean value){
         // Setting Jump Status
         this.jumpStatus = value;
     }
-
     public void setDashStatus(boolean value){
         // Setting Dash Status
         this.dashStatus = value;
     }
-
     public void setCrouchStatus(boolean crouchStatus) {
         this.crouchStatus = crouchStatus;
     }
-
     public void reverseCrouch() {
         // Reverses the state variable of any player type object
 
-        if (this.crouchStatus) {
-            this.crouchStatus = false;
-        } else {
-            this.crouchStatus = true;
-        } //If state == true then {switch to false}else{switch to true}
+        //If state == true then {switch to false}else{switch to true}
+        this.crouchStatus = !this.crouchStatus;
     }
-
     public void setPlayerDirection(String direction){
 
         this.playerDirection = direction;
     }
 
-
-
-
+    
     // Actions
     // KeyBoardInput class will use these methods
 
-    public void jump(){
+    public void jump() throws InterruptedException {
         // Current version of this method will instantly move the character to the y_cord + JUMP_HEIGHT... wait a bit and fall back down
         // Version with GUI should gradually raise the players Y value then gradually lower it
         // Currently we do not have ground so when if comes to the fall of the jump it will treat y_cord == 0.0 as the ground
@@ -137,7 +119,7 @@ public class Player extends Character{
             this.incrementY(perTickY);
             this.incrementX(perTickX, false);
 
-            System.out.println(this.getName() + "'s current coordinates are: " + this.getCords()); // This is just used for demo purposes in the full game this should display the player on the screen with the new cords
+            System.out.println(this.getCords()); // This is just used for demo purposes in the full game this should display the player on the screen with the new cords
 
         }
 
@@ -146,18 +128,35 @@ public class Player extends Character{
 
             this.incrementY(-perTickY);
             this.incrementX(perTickX, false);
-            System.out.println(this.getName() + "'s current coordinates are: " + this.getCords());
-
+            System.out.println(this.getCords());
         }
     }
 
 
-    public void dash(String direction){
+    public void dash(ArrayList<Traps> trapList,String direction) throws InterruptedException {
         // Potential for KeyBoardInput interaction will allow a player to choose which way to dash
         // Changes the current position of the player with respect to the x_cord after using the dash facing left or right
         this.playerSpeed *= DASH_MULTIPLIER;
-        if (playerDirection.toUpperCase().equals("RIGHT")) {incrementX(getPlayerSpeed(), true); }
-        if (playerDirection.toUpperCase().equals("LEFT")) { incrementX(-getPlayerSpeed(), true); }
+        if (playerDirection.toUpperCase().equals("RIGHT")) {
+            for (double c = 0; c < this.getPlayerSpeed(); c += 0.25) {
+                incrementX(0.25, true);
+
+                System.out.println(getCords());
+                if (!this.moveValid(trapList)) {
+                    return;
+                }
+            }
+        }
+
+        if (playerDirection.toUpperCase().equals("LEFT")) {
+            for (double c = 0; c > -this.getPlayerSpeed(); c -= 0.25) {
+                incrementX(-0.25, true);
+                System.out.println(getCords());
+                if (!this.moveValid(trapList)) {
+                    return;
+                }
+            }
+        }
 
         //Thread.sleep(1000);
         /* Essentially waits a second before resetting playerSpeed to original
@@ -173,49 +172,42 @@ public class Player extends Character{
          */
     }
 
-
-    public void moveRight() {
+    public void moveRight(ArrayList<Traps> trapList) throws InterruptedException {
         // This will take the objects x_cord and move it according to the Player speed to the right
-
-
-        this.incrementX(getPlayerSpeed(), true);
         this.setPlayerDirection("RIGHT");
+        for (double c = 0.0; c < this.playerSpeed; c += 0.25) {
+            this.incrementX(0.25, true);
+            System.out.println(this.getCords());
+            if(!this.moveValid(trapList)){
+                return;
+            }
+        }
     }
 
 
-    public void moveLeft() {
+    public void moveLeft(ArrayList<Traps> trapList) throws InterruptedException {
         // This will like the above method simply add the PLAYER_SPEED to the objects x_cords value
-        this.incrementX(-getPlayerSpeed(),true);
         this.setPlayerDirection("LEFT");
+        for (double c = 0.0; c > -this.playerSpeed; c -= 0.25) {
+            this.incrementX(-0.25, true);
+            System.out.println(this.getCords());
+            if(!this.moveValid(trapList)){
+                return;
+            }
+        }
     }
 
-    public void deathCheck(ArrayList<Traps> trapsList) throws InterruptedException {
+    public void death(Traps t) throws InterruptedException {
         // To check if a player is on a trap
         // This method will get the players current X and Y cords and see if they match any of the Traps in the Trap list
         // If a player is on a trap the Trap's damagePlayer() method will be called on the player
 
-        double playerYCord = this.getY();
-        double playerXCord = this.getX();
 
-        for (Traps trap : trapsList){
-            // Iterating through the ArrayList
-
-            if(trap.getX_Cord() == (playerXCord)){
-
-                if(trap.getY_Cord() == playerYCord){
-                    // This is when we have a player on top of a trap
-
-                    trap.damagePlayer(this); // Player will die
-                    System.out.println("OOoOOooOf You have died :( \nReturning you to the start of the level...\n");
-                    Thread.sleep(2000);
-                    System.out.println(this.getCords());
-                    this.setTo(0,0); // Player will be reset to (0,0) the start of the level
-
-                }
-
-            }
-
-        }
+        t.damagePlayer(this); // Player will die
+        System.out.println("OOoOOooOf You have died :( \nReturning you to the start of the level...\n");
+        Thread.sleep(2000);
+        this.setTo(0,0); // Player will be reset to (0,0) the start of the level
+        System.out.print(this.getCords());
 
 
     }
@@ -232,32 +224,16 @@ public class Player extends Character{
         }
         return false;
     }
-    /*   public boolean moveValid(Player player, ArrayList<Traps> trapList, double spaceToMove) {
-        // when moving left or right we must ensure that as we pass that there is no trap between current X and X + playerSpeed
 
-        int directionModifier = 1;
-        if (player.getPlayerDirection().equalsIgnoreCase("LEFT")) {
-            directionModifier = -1;
-        } // If the player is facing left we need to check a movement to the left
+    public boolean moveValid (ArrayList<Traps> trapList) throws InterruptedException {
 
-        for (Traps b : trapList) {
-            // Looping through the trapList
+        for(Traps t : trapList){
+            if(t.getX_Cord() == this.getX()){
+                this.death(t);
 
-            if (this.getX() < b.getX_Cord()) {
-                // If the trap is in front of the players current X value then we proceed
-
-                if (b.getX_Cord() < this.getX() + (spaceToMove * directionModifier)) {
-                    // If the trap is behind where the player will be after the complete the movement
-                    // Then the player would move straight over the trap and DIE
-
-                    return false;
-
-                }
-
+                return false;
             }
         }
         return true;
     }
-}
-*/
 }
