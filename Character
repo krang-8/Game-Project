@@ -8,6 +8,8 @@ public class Character {
     private int health;
     private String name = "UNNAMED";
     private boolean state;
+    private int WIDTH = 10 //temporary height and width, will probably be changed later to adjust size
+    private int HEIGHT = 10
 
 
 
