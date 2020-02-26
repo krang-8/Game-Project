@@ -1,6 +1,6 @@
 import java.awt.Rectangle;
 
-public class Collisions {
+public class RectangleCollision {
 	// instances (not sure if will be used yet)
 	int xRectangle;
 	int yRectangle;
