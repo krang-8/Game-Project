@@ -5,11 +5,11 @@ public class Player extends Character{
     // The Character that the user will control
 
     // Instance Variables
-    
+
     private boolean jumpStatus = true; // If true the Player is able to call the Jump method
     private boolean dashStatus = true; // If true the Player is able to call the Dash Method
     private boolean crouchStatus = false; // For future implementation; dashing while crouched will result in a side where the players hit box should be halved
-    
+
     // These will always belong to the Class ----> Potentially modified by POWER_UPS and ITEMS
     private static final double JUMP_HEIGHT = 1.5;
     private static final double ABILITY_SPEED = 0.75;
@@ -60,7 +60,7 @@ public class Player extends Character{
         // Return the player playerDirection
         return playerDirection;
     }
-    
+
     // Setters
 
     public void setJumpStatus(boolean value){
@@ -85,11 +85,11 @@ public class Player extends Character{
         this.playerDirection = direction;
     }
 
-    
+
     // Actions
     // KeyBoardInput class will use these methods
 
-    public void jump() throws InterruptedException {
+    public void jump(ArrayList<Traps> trapList) throws InterruptedException {
         // Current version of this method will instantly move the character to the y_cord + JUMP_HEIGHT... wait a bit and fall back down
         // Version with GUI should gradually raise the players Y value then gradually lower it
         // Currently we do not have ground so when if comes to the fall of the jump it will treat y_cord == 0.0 as the ground
@@ -120,7 +120,6 @@ public class Player extends Character{
             this.incrementX(perTickX, false);
 
             System.out.println(this.getCords()); // This is just used for demo purposes in the full game this should display the player on the screen with the new cords
-
         }
 
         while (this.getY() > (0.01)){
@@ -130,6 +129,7 @@ public class Player extends Character{
             this.incrementX(perTickX, false);
             System.out.println(this.getCords());
         }
+        this.moveValid(trapList);
     }
 
 
@@ -197,7 +197,7 @@ public class Player extends Character{
         }
     }
 
-    public void death(Traps t) throws InterruptedException {
+    private void death(Traps t) throws InterruptedException {
         // To check if a player is on a trap
         // This method will get the players current X and Y cords and see if they match any of the Traps in the Trap list
         // If a player is on a trap the Trap's damagePlayer() method will be called on the player
