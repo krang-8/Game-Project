@@ -4,12 +4,15 @@ import java.util.Scanner;
 public class KeyboardInput extends mainMenu {
 
     //Variables
+
     private static Scanner keyboard = new Scanner(System.in);
-    private static Player demoPlayer = new Player("DemoPlayer"); // This is the Player object that belongs to this class
+    private static Player demoPlayer = new Player("Plip Plop"); // This is the Player object that belongs to this class
     private static mainMenu mainMenu;
     private static ArrayList<Traps> trapsList = new ArrayList<Traps>();
     private static double lastFrameX = 20; // Once the player crossed this the game is considered won for the demo
     private static boolean gameIsWon = false;
+    private static Object Player;
+    private static Object Character;
 
 
     // Methods
@@ -20,26 +23,22 @@ public class KeyboardInput extends mainMenu {
 
         // Move Right
         if (action.equalsIgnoreCase("D")) {
-            target.moveRight();
-
+            target.moveRight(trapsList);
         }
 
         // Move Left
         if (action.equalsIgnoreCase("A")) {
-            target.moveLeft();
-
+            target.moveLeft(trapsList);
         }
 
         // Jump
         if (action.equalsIgnoreCase("W")) {
             target.jump();
-            System.out.println("\n" + target.getCords() + "\n");
         }
 
         // Dash
         if (action.equalsIgnoreCase("P")) {
-            target.dash(target.getPlayerDirection());
-            System.out.println(target.getCords() + "\n");
+            target.dash(trapsList,target.getPlayerDirection());
         }
 
         // Crouch (This may or may not be of use in the final game)
@@ -48,7 +47,9 @@ public class KeyboardInput extends mainMenu {
             System.out.println("Crouch Status: " + target.getCrouchStatus());
         }
 
+
     }
+
 
 
     public static String askInput() throws InterruptedException {
@@ -62,7 +63,7 @@ public class KeyboardInput extends mainMenu {
     public static void toString(ArrayList<Traps> trapList) {
         // Displays the locations of the traps
 
-        System.out.println("Traps are located at these coordinates");
+        System.out.println("\n" + "Traps are located at these coordinates");
         for (Traps b : trapList) {
             System.out.print("(" + b.getX_Cord() + "," + b.getY_Cord() + ") ");
         }
@@ -97,19 +98,21 @@ public class KeyboardInput extends mainMenu {
             demoPlayer.setMaxHealth(3);
             demoPlayer.setHealth(3);
             System.out.println(demoPlayer.getName() + "'s health is currently: " + demoPlayer.getHealth() + "/" + demoPlayer.getMaxHealth());
+            Thread.sleep(500);
 
             // Ability status'
             //Jump
             System.out.println(demoPlayer.getName() + "'s Current Jump Status: " + demoPlayer.getJumpStatus());
+            Thread.sleep(500);
             //Dash
             System.out.println(demoPlayer.getName() + "'s Current Dash Status: " + demoPlayer.getDashStatus());
+            Thread.sleep(500);
             //Crouch
             System.out.println(demoPlayer.getName() + "'s Current Crouch Status: " + demoPlayer.getCrouchStatus());
+            Thread.sleep(2500);
 
-
-            System.out.println(demoPlayer.getCords() + "\n");
+            System.out.println(demoPlayer.getCords());
             do {
-                demoPlayer.deathCheck(trapsList);
                 toString(trapsList);
                 input = askInput();
                 action(demoPlayer, input);
