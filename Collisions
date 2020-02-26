@@ -1,0 +1,27 @@
+import java.awt.Rectangle;
+
+public class Collisions {
+	// instances (not sure if will be used yet)
+	int xRectangle;
+	int yRectangle;
+	
+	public Rectangle drawPlayerBounds() { // draw hitbox for Player
+		Rectangle playerRectangle = new Rectangle(Character.getX, Character.getY, Character.getY + Character.HEIGHT,Character.getX + Character.WIDTH);
+		return playerRectangle;
+		
+		
+	public Rectangle drawBlockBounds() { // draw hitbox for Blocks
+		Rectangle blockRectangle = new Rectangle(Blocks.getxLocationBlock(), Blocks.getyLocationBlock())
+		
+	}
+	public boolean collision(){ // used to detect the collision between hitboxes
+		if (playerRectangle.intersects(blockRectangle))
+			return true;
+		else
+			return false;
+	}
+	
+	}
+	
+	
+}
