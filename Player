@@ -135,7 +135,7 @@ public class Player extends Character{
             // ABILITY_SPEED is a variable that we can change later to make this go faster or slower
 
             this.incrementY(perTickY);
-            this.incrementX(perTickX);
+            this.incrementX(perTickX, false);
 
             System.out.println(this.getName() + "'s current coordinates are: " + this.getCords()); // This is just used for demo purposes in the full game this should display the player on the screen with the new cords
 
@@ -145,7 +145,7 @@ public class Player extends Character{
             // Falling action of a jump
 
             this.incrementY(-perTickY);
-            this.incrementX(perTickX);
+            this.incrementX(perTickX, false);
             System.out.println(this.getName() + "'s current coordinates are: " + this.getCords());
 
         }
@@ -156,8 +156,8 @@ public class Player extends Character{
         // Potential for KeyBoardInput interaction will allow a player to choose which way to dash
         // Changes the current position of the player with respect to the x_cord after using the dash facing left or right
         this.playerSpeed *= DASH_MULTIPLIER;
-        if (playerDirection.toUpperCase().equals("RIGHT")) {incrementX(getPlayerSpeed()); }
-        if (playerDirection.toUpperCase().equals("LEFT")) { incrementX(-getPlayerSpeed()); }
+        if (playerDirection.toUpperCase().equals("RIGHT")) {incrementX(getPlayerSpeed(), true); }
+        if (playerDirection.toUpperCase().equals("LEFT")) { incrementX(-getPlayerSpeed(), true); }
 
         //Thread.sleep(1000);
         /* Essentially waits a second before resetting playerSpeed to original
@@ -177,14 +177,15 @@ public class Player extends Character{
     public void moveRight() {
         // This will take the objects x_cord and move it according to the Player speed to the right
 
-        this.incrementX(getPlayerSpeed());
+
+        this.incrementX(getPlayerSpeed(), true);
         this.setPlayerDirection("RIGHT");
     }
 
 
     public void moveLeft() {
         // This will like the above method simply add the PLAYER_SPEED to the objects x_cords value
-        this.incrementX(-getPlayerSpeed());
+        this.incrementX(-getPlayerSpeed(),true);
         this.setPlayerDirection("LEFT");
     }
 
@@ -231,13 +232,13 @@ public class Player extends Character{
         }
         return false;
     }
-
-    /*
-    public boolean moveValid(ArrayList<Traps> trapList, double spaceToMove) {
+    /*   public boolean moveValid(Player player, ArrayList<Traps> trapList, double spaceToMove) {
         // when moving left or right we must ensure that as we pass that there is no trap between current X and X + playerSpeed
 
         int directionModifier = 1;
-        if (this.getPlayerDirection().equalsIgnoreCase("LEFT")){directionModifier = -1;} // If the player is facing left we need to check a movement to the left
+        if (player.getPlayerDirection().equalsIgnoreCase("LEFT")) {
+            directionModifier = -1;
+        } // If the player is facing left we need to check a movement to the left
 
         for (Traps b : trapList) {
             // Looping through the trapList
