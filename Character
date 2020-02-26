@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 public class Character {
@@ -10,6 +11,8 @@ public class Character {
     private int health;
     private String name = "UNNAMED";
     private boolean state;
+    private final double WIDTH = 0.5; //temporary height and width, will probably be changed later to adjust size
+    private final double HEIGHT = 1.0;
 
 
     // Constructor
@@ -141,5 +144,4 @@ public class Character {
     }
 }
 
- 
 
