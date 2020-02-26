@@ -1,0 +1,47 @@
+
+public class Blocks {
+
+	private int xSizeBlock; // pretty much Width of Block
+	private int ySizeBlock; // Height of Block
+	private double xLocationBlock; // x-Axis Location of certain Block
+	private double yLocationBlock; // y-Axis Location of certain Block
+	private String blockName = "Sample";
+	public int getxSizeBlock() {
+		return xSizeBlock;
+	}
+	public void setxSizeBlock(int xSizeBlock) {
+		this.xSizeBlock = xSizeBlock;
+	}
+	public int getySizeBlock() {
+		return ySizeBlock;
+	}
+	public void setySizeBlock(int ySizeBlock) {
+		this.ySizeBlock = ySizeBlock;
+	}
+	public double getxLocationBlock() {
+		return xLocationBlock;
+	}
+	public void setxLocationBlock(double xLocationBlock) {
+		this.xLocationBlock = xLocationBlock;
+	}
+	public double getyLocationBlock() {
+		return yLocationBlock;
+	}
+	public void setyLocationBlock(double yLocationBlock) {
+		this.yLocationBlock = yLocationBlock;
+	}
+	public String getBlockName() {
+		return blockName;
+	}
+	public void setBlockName(String blockName) {
+		this.blockName = blockName;
+	}
+	
+
+}
+
+
+
+
+	
+	
