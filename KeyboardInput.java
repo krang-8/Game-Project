@@ -12,7 +12,7 @@ public class KeyboardInput extends mainMenu {
     private static ArrayList<Traps> trapsList = new ArrayList<Traps>();
     private static double lastFrameX = 20; // Once the player crossed this the game is considered won for the demo
     private static boolean gameIsWon = false;
-    private static ArrayList<String> worldList = new ArrayList<String>(Arrays.asList("-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"));
+    private static ArrayList<String> worldList = new ArrayList<String>(41);
 
     // Methods
 
@@ -70,19 +70,31 @@ public class KeyboardInput extends mainMenu {
 
      */
 
-        for(int i = 0; i < lastFrameX * 2; i++){
-            // Reset the world list to empty
-            worldList.set(i, "-");
+        double counter = 0.0;
 
-        }
+        for(int i = 0; i < 41; i ++) {
+            // Reset the world list to empty
+
+            if (worldList.size() != 41){
+
+                worldList.add(i, String.valueOf(counter + "-"));
+                counter += 0.5;
+            }else{
+
+                worldList.set(i, String.valueOf(counter) + "-");
+                counter += 0.5;
+            }
+
+
+            }
 
         for (Traps b : trapList){
             // Displaying Traps to the world list
-            worldList.set((int)b.getX_Cord() * 2, "X");
+            worldList.set((int)((b.getX_Cord() * 2)), "X");
             System.out.println(b.getX_Cord() * 2);
 
         }
-        worldList.set((int)player.getX() * 2, "*");
+        worldList.set((int)(player.getX() * 2), "*");
         System.out.println(player.getX() * 2);
 
         for(String s: worldList){
