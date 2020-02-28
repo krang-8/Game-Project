@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class KeyboardInput extends mainMenu {
+public class Main{
 
     //Variables
 
     private static Scanner keyboard = new Scanner(System.in);
     private static Player demoPlayer = new Player("Plip Plop"); // This is the Player object that belongs to this class
-    private static mainMenu mainMenu;
+    private static mainMenu mainMenu = new mainMenu();
     private static ArrayList<Traps> trapsList = new ArrayList<Traps>();
     private static double lastFrameX = 20; // Once the player crossed this the game is considered won for the demo
     private static boolean gameIsWon = false;
@@ -98,7 +98,7 @@ public class KeyboardInput extends mainMenu {
 
         // Main menu
         do {
-            userSelection(introScreen());
+            mainMenu.run();
 
             // Traps
             trapsList.add(new Traps(2, 0));
