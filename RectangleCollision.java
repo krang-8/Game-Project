@@ -1,4 +1,4 @@
-import java.awt.Rectangle;
+/* import java.awt.Rectangle;
 
 public class RectangleCollision {
 	// instances (not sure if will be used yet)
@@ -29,3 +29,4 @@ public class RectangleCollision {
 	
 	
 }
+/*
