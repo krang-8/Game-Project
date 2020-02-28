@@ -1,12 +1,15 @@
 import java.util.Scanner;
 
-public class mainMenu {
+public class MainMenu {
 
-    private static String gameName = "Untitled";
+    private static String gameName = "Demo1";
 
     // Play, Settings, Quit
 
-    public static int introScreen() {
+    private static int introScreen() {
+        // Ran in the run() method
+        // Will introduce the user to the game and prompt to start the game
+
         String printIntro = ("Welcome to " +gameName + "\n" + "(1) Start Game" + "\n" + "(2) Settings " + "\n" + "(3) Quit");
         System.out.println(printIntro);
         System.out.println("Choose a option for the game!");
@@ -22,22 +25,23 @@ public class mainMenu {
     }
     // Method
 
-    public static void startGame(){
+    private static void startGame(){
         // If this is selected proceed to the game
     }
 
-    public static void settings(){
+    private static void settings(){
         // If this is selected user will be able to modify the settings of the game
         System.out.println("No Settings available yet... Program terminating... See you soon!");
         System.exit(0);
     }
 
-    public static void quit(){
+    private static void quit(){
         // If this is selected the game will exit
         System.out.println("See you soon...");
         System.exit(0);
     }
-    public static void userSelection(int option){
+    private static void userSelection(int option){
+        // Takes in an option during the user selection method to determine what the player wants to do
         if(option == 1){
             startGame();
         }
@@ -50,5 +54,8 @@ public class mainMenu {
     }
 
 
-
+    public void run() {
+        //Runs the user selection screen and gets their input
+        this.userSelection(introScreen());
+    }
 }
