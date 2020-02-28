@@ -7,8 +7,8 @@ public class Main{
     //Variables
 
     private static Scanner keyboard = new Scanner(System.in);
-    private static Player demoPlayer = new Player("Plip Plop"); // This is the Player object that belongs to this class
-    private static mainMenu mainMenu = new mainMenu();
+    private static Player demoPlayer = new Player("Demo1"); // This is the Player object that belongs to this class
+    private static MainMenu mainMenu = new MainMenu();
     private static ArrayList<Traps> trapsList = new ArrayList<Traps>();
     private static double lastFrameX = 20; // Once the player crossed this the game is considered won for the demo
     private static boolean gameIsWon = false;
@@ -16,7 +16,7 @@ public class Main{
 
     // Methods
 
-    public static void action(Player target, String action) throws InterruptedException {
+    private static void action(Player target, String action) throws InterruptedException {
         // Will take input through the Scanner object and apply the action to the desired object
 
 
