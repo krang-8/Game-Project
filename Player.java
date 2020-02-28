@@ -98,6 +98,13 @@ public class Player extends Character{
         if (crouchStatus){
             System.out.println("Player can not jump while crouched..."); return;} // Can't Jump while crouching so we just return
 
+        if(this.getPlayerDirection().equalsIgnoreCase("LEFT") && this.getX() < 4.5){
+            System.out.println("That action is forbidden...\n\t Player attempting to go outside the bounds of the world\n"+ this.getName() + "'s Current Coordinates: (0.0, 0.0)");
+            this.setPlayerDirection("RIGHT");
+            Thread.sleep(1500);
+            return;
+        }
+
         int directionModifier = 1;
         if (this.getPlayerDirection().equalsIgnoreCase("LEFT")){directionModifier = -1;}
         // is facing left we need to be incrementing out x to the left using negative perTickX values
@@ -167,7 +174,6 @@ public class Player extends Character{
 
         /* Changes the current position of the player with respect of the y_cord after using the dash while in air (Usable as a form of double jump)
         if (playerDirection.toUpperCase().equals("UP")) { this.incrementY(DASH_LENGTH); }
-
             This was meant for a potential jump dash combo but we will instead just implement a double jump
          */
     }
@@ -189,9 +195,20 @@ public class Player extends Character{
         // This will like the above method simply add the PLAYER_SPEED to the objects x_cords value
         this.setPlayerDirection("LEFT");
         for (double c = 0.0; c > -this.playerSpeed; c -= 0.25) {
+
+            if(!this.moveValid(trapList)){
+                //PreCheck ensuring player is in bounds (not at 0 or lower)
+                System.out.println("That action is forbidden...\n\t Player attempting to go outside the bounds of the world\n"+ this.getName() + "'s Current Coordinates: (0.0, 0.0)");
+                this.setPlayerDirection("RIGHT");
+                Thread.sleep(1500);
+                return;
+            }
+
             this.incrementX(-0.25, true);
             System.out.println(this.getCords());
+
             if(!this.moveValid(trapList)){
+                //Ensuring player death if they run on trap
                 return;
             }
         }
@@ -204,7 +221,7 @@ public class Player extends Character{
 
 
         t.damagePlayer(this); // Player will die
-        System.out.println("OOoOOooOf You have died :( \nReturning you to the start of the level...\n");
+        System.out.println("\nOOoOOooOf You have died :( \nReturning you to the start of the level...\n");
         Thread.sleep(2000);
         this.setTo(0,0); // Player will be reset to (0,0) the start of the level
         System.out.print(this.getCords());
@@ -218,7 +235,7 @@ public class Player extends Character{
 
         if(this.getX() >= lastFrameX){
             // Victory!!!
-            System.out.println("YOU JUST WON THE GAME CONGRATS...\n\n\n\n");
+            System.out.println("YOU JUST WON THE GAME CONGRATS...\n\n\n");
             return true;
 
         }
@@ -228,12 +245,16 @@ public class Player extends Character{
     public boolean moveValid (ArrayList<Traps> trapList) throws InterruptedException {
 
         for(Traps t : trapList){
+            // Invalid as in You DIE
             if(t.getX_Cord() == this.getX()){
                 this.death(t);
 
                 return false;
             }
         }
+
+        // Invalid as in outside of world
+        if(this.getX() == 0.0){return false;}
         return true;
     }
 }
