@@ -7,9 +7,11 @@ CPSC233
 
 
 
-// Gotta add how to compile the code and run it as stated in one of the lectures. We should add this in the meeting.
 
-                                                    // COMPILING
+
+                                                    // RUNNING GAME
        
-1. Import KeyboardInput, Character, Player & Traps.       
+1.     Download Source Code
+2.     Import it into Eclipse
+3.     Run the KeyboardInput Class
                                                     
