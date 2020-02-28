@@ -99,6 +99,7 @@ public class Player extends Character{
             System.out.println("Player can not jump while crouched..."); return;} // Can't Jump while crouching so we just return
 
         if(this.getPlayerDirection().equalsIgnoreCase("LEFT") && this.getX() < 4.5){
+            // If player attempts to jump into a negative X this will reset the player back to Checkpoint
             System.out.println("That action is forbidden...\n\t Player attempting to go outside the bounds of the world\n"+ this.getName() + "'s Current Coordinates: (0.0, 0.0)");
             this.setPlayerDirection("RIGHT");
             Thread.sleep(1500);
