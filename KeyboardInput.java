@@ -12,7 +12,7 @@ public class KeyboardInput extends mainMenu {
     private static ArrayList<Traps> trapsList = new ArrayList<Traps>();
     private static double lastFrameX = 20; // Once the player crossed this the game is considered won for the demo
     private static boolean gameIsWon = false;
-    private static ArrayList<String> worldList = new ArrayList<String>(41);
+    private static ArrayList<String> worldList = new ArrayList<String>(Arrays.asList("-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-"));
 
     // Methods
 
@@ -56,49 +56,35 @@ public class KeyboardInput extends mainMenu {
         //Prompt the user with input and pass that to the action method
 
         Thread.sleep(1000);
-        System.out.println("\n\nEnter desired direction of movement for " + demoPlayer.getName() + "...(case doesn't matter)W - Jump: Moves X by 4.5 \nA - Move Left: Moves X by 1 to the left\nS - Crouch: Halves Width and disables Jump\nD - Move Right: Moves X by 1 to the Right\nP - Dash: Moves X by 3");
+        System.out.println("\n\nEnter desired direction of movement for " + demoPlayer.getName() + "...(case doesn't matter)\n\tW - Jump: Moves X by 4.5 \n\tA - Move Left: Moves X by 1 to the left\n\tS - Crouch: Halves Width and disables Jump\n\tD - Move Right: Moves X by 1 to the Right\n\tP - Dash: Moves X by 3");
         return keyboard.next();
     }
 
     public static void toString(ArrayList<Traps> trapList, ArrayList<String> worldList, Player player) {
         // Displays the locations of the traps
-    /*
-        System.out.println("\n" + "Traps are located at these coordinates");
-        for (Traps b : trapList) {
-            System.out.print("(" + b.getX_Cord() + "," + b.getY_Cord() + ") ");
-        }
 
-     */
-
-        double counter = 0.0;
-
-        for(int i = 0; i < 41; i ++) {
+        int counter = 0;
+        System.out.println("Current World:");
+        for(int i = 0; i < lastFrameX * 2; i++){
             // Reset the world list to empty
+            worldList.set(i, "-");
 
-            if (worldList.size() != 41){
-
-                worldList.add(i, String.valueOf(counter + "-"));
-                counter += 0.5;
-            }else{
-
-                worldList.set(i, String.valueOf(counter) + "-");
-                counter += 0.5;
-            }
-
-
-            }
+        }
 
         for (Traps b : trapList){
             // Displaying Traps to the world list
-            worldList.set((int)((b.getX_Cord() * 2)), "X");
-            System.out.println(b.getX_Cord() * 2);
+            worldList.set((int)(b.getX_Cord() * 2), "X");
 
         }
         worldList.set((int)(player.getX() * 2), "*");
-        System.out.println(player.getX() * 2);
 
         for(String s: worldList){
-            System.out.print(s);
+            counter++;
+            System.out.print(s + " ");
+
+            if(counter % 10 == 0 && counter % 40 != 0){System.out.print("\n"); // Breaks the world into 5's
+
+            }
         }
 
 
