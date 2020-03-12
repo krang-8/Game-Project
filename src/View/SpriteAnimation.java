@@ -1,4 +1,4 @@
-package Visual;
+package View;
 
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;

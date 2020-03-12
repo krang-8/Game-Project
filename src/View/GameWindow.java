@@ -1,4 +1,4 @@
-package Visual;
+package View;
 import java.awt.*;
 
 public class GameWindow extends javax.swing.JFrame {

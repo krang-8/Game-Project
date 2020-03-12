@@ -1,9 +1,9 @@
-package Visual;
+package View;
 
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.scene.Parent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -11,8 +11,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-
 
 
 public class ApplicationWindow extends Application {
@@ -20,10 +18,10 @@ public class ApplicationWindow extends Application {
 
     private Screen menuScreen = new Screen("    {  (UN)-TITLED GAME  }", "Start", "Load", "Settings"); // Main root
     private Screen settingsScreen = new Screen("\t\t\t\t  Settings", "Music", "Effects", "");
-    private Screen loadScreen = new Screen("\t\t\t\tLoad Save", "- Empty -", "- Empty -", "- Empty -");;
-    private Screen startScreen = new Screen("\t\tCharacter Select", "RODDY", "MACE", "DRAKE");;
+    private Screen loadScreen = new Screen("\t\t\t\tLoad Save", "- Empty -", "- Empty -", "- Empty -");
+    private Screen startScreen = new Screen("\t\tCharacter Select", "RODDY", "MACE", "DRAKE");
     private Scene mainScene;
-    
+
 
     @Override
     public void start(Stage myStage) throws Exception {
@@ -31,14 +29,14 @@ public class ApplicationWindow extends Application {
 
         //Start By making the Menu Scene
         //Set the Scene to the MenuGroup and show the Stage
-        mainScene = new Scene(menuScreen.getRoot() ,1000,800);
+        mainScene = new Scene(menuScreen.getRoot(), 1000, 800);
         myStage.setScene(mainScene);
         myStage.show();
         
         //Load FXML
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("HUD.fxml"));
-        AnchorPane HUD = loader.<AnchorPane>load();
+        AnchorPane HUD = loader.load();
         
 
 

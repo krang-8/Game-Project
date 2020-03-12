@@ -1,4 +1,4 @@
-package Visual;
+package View;
 //import com.sun.prism.Graphics;
 
 import java.awt.*;

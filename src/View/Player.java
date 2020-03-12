@@ -1,6 +1,5 @@
-package Visual;
+package View;
 import java.awt.*;
-import java.util.Timer;
 
 public class Player {
 

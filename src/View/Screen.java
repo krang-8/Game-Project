@@ -1,8 +1,7 @@
-package Visual;
+package View;
 
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -88,7 +87,7 @@ public class Screen {
         text1.setFont(menuTextFont);
         text1.setFill(textColor);
         text1.setStroke(Color.BLACK);
-        text1.setX((int) (SCREENX / 2) - 80);
+        text1.setX((SCREENX / 2) - 80);
         text1.setY(300);
 
         // Action when mouse hovering
@@ -96,7 +95,7 @@ public class Screen {
             text1.setUnderline(true);
             text1.setFill(Color.RED);
             text1.setFont(menuTextSelectedFont);
-            text1.setX((int) (SCREENX / 2) - 88);
+            text1.setX((SCREENX / 2) - 88);
 
 
         });
@@ -106,7 +105,7 @@ public class Screen {
             text1.setUnderline(false);
             text1.setFill(textColor);
             text1.setFont(menuTextFont);
-            text1.setX((int) (SCREENX / 2) - 80);
+            text1.setX((SCREENX / 2) - 80);
 
 
         });
@@ -116,7 +115,7 @@ public class Screen {
         text2.setFont(menuTextFont);
         text2.setFill(textColor);
         text2.setStroke(Color.BLACK);
-        text2.setX((int) (SCREENX / 2) - 80);
+        text2.setX((SCREENX / 2) - 80);
         text2.setY(450);
 
         // Action when mouse hovering
@@ -124,7 +123,7 @@ public class Screen {
             text2.setUnderline(true);
             text2.setFill(Color.RED);
             text2.setFont(menuTextSelectedFont);
-            text2.setX((int) (SCREENX / 2) - 88);
+            text2.setX((SCREENX / 2) - 88);
 
 
         });
@@ -134,7 +133,7 @@ public class Screen {
             text2.setUnderline(false);
             text2.setFill(textColor);
             text2.setFont(menuTextFont);
-            text2.setX((int) (SCREENX / 2) - 80);
+            text2.setX((SCREENX / 2) - 80);
 
 
         });
@@ -144,7 +143,7 @@ public class Screen {
         text3.setFont(menuTextFont);
         text3.setFill(textColor);
         text3.setStroke(Color.BLACK);
-        text3.setX((int) (SCREENX / 2) - 80);
+        text3.setX((SCREENX / 2) - 80);
         text3.setY(600);
 
         // Action when mouse hovering
@@ -152,7 +151,7 @@ public class Screen {
             text3.setUnderline(true);
             text3.setFill(Color.RED);
             text3.setFont(menuTextSelectedFont);
-            text3.setX((int) (SCREENX / 2) - 88);
+            text3.setX((SCREENX / 2) - 88);
 
 
         });
@@ -162,7 +161,7 @@ public class Screen {
             text3.setUnderline(false);
             text3.setFill(textColor);
             text3.setFont(menuTextFont);
-            text3.setX((int) (SCREENX / 2) - 80);
+            text3.setX((SCREENX / 2) - 80);
 
 
         });
