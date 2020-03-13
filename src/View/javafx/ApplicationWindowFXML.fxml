@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" focusTraversable="true" prefHeight="600.0" prefWidth="600.0"
+            style="-fx-background-color: radial-gradient(center 50% 50% , radius 12% , repeat, #fffaf0, #008080, #90ee90);"
+            xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="Controller.ApplicationWindowController">
+   <children>
+      <BorderPane layoutX="187.0" layoutY="89.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0"
+                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+               <children>
+                  <MenuBar>
+                     <menus>
+                        <Menu mnemonicParsing="false" text="Settings">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Load File"/>
+                              <MenuItem mnemonicParsing="false" text="Sound"/>
+                              <MenuItem mnemonicParsing="false" text="Close"/>
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="About"/>
+                           </items>
+                        </Menu>
+                     </menus>
+                  </MenuBar>
+                  <Label alignment="CENTER" contentDisplay="TOP"
+                         style="-fx-border-color: Black; -fx-border-width: 3; -fx-background-color: lightgreen;"
+                         text="{UN}titled Game" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Droid Sans Mono" size="46.0"/>
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR"/>
+                     </cursor>
+                     <opaqueInsets>
+                        <Insets/>
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets top="5.0"/>
+                     </VBox.margin>
+                     <effect>
+                        <Lighting diffuseConstant="1.42" specularConstant="1.25" specularExponent="29.78"
+                                  surfaceScale="3.48">
+                           <bumpInput>
+                              <Shadow/>
+                           </bumpInput>
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="0.9342105388641357" green="0.9147478342056274"
+                                           blue="0.9147478342056274"/>
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <ImageView fx:id="iconHolder" fitHeight="300.0" fitWidth="300.0" nodeOrientation="INHERIT"
+                       onMouseEntered="#playAnimation" onMouseExited="#stopAnimation" pickOnBounds="true"
+                       preserveRatio="true" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="85.0"/>
+               </BorderPane.margin>
+               <image>
+                  <Image url="@/Resources/CharSpriteSheet.png"/>
+               </image>
+               <viewport>
+                  <Rectangle2D height="1024.0" width="1024.0"/>
+               </viewport>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="59.43" offsetX="-10.0" offsetY="10.0" radius="27.0225"
+                              width="50.66">
+                     <input>
+                        <Reflection bottomOpacity="0.31" topOpacity="0.96"/>
+                     </input>
+                     <color>
+                        <Color red="0.8833333253860474" green="1.0"/>
+                     </color>
+                  </DropShadow>
+               </effect>
+            </ImageView>
+         </center>
+      </BorderPane>
+   </children>
+   <opaqueInsets>
+      <Insets/>
+   </opaqueInsets>
+</AnchorPane>
