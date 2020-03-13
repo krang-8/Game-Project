@@ -66,14 +66,17 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
     }
 
     public void makeWalls(int offset){
-        for (int i = 0; i<1400; i+=25){
+        for (int i = 0; i < 500; i+=25){
             walls.add(new Wall(i, 700, 25, 25));
         }
+        for (int i = 575; i >= 575 && i < 1400; i+=25){
+            walls.add(new Wall(i, 700, 25, 25));
+        }
+        walls.add(new Wall(125,600,25,25));
         walls.add(new Wall(150,600,25,25));
         walls.add(new Wall(175,600,25,25));
         walls.add(new Wall(200,600,25,25));
         walls.add(new Wall(225,600,25,25));
-        walls.add(new Wall(250,600,25,25));
 
         walls.add(new Wall(400,675,25,25));
 
@@ -103,13 +106,6 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
         walls.add(new Wall(625,675,25,25));
 
         walls.add(new Wall(650,675,25,25));
-
-
-
-
-
-
-
 
 
     }
