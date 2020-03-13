@@ -1,27 +1,25 @@
 package Controller;
 
 /**
- * ApplicationWindowController for the FXML file in the view.
+ * ApplicationWindowController for the FXML file in the view.javafx package
  */
 
 import Resources.SpriteAnimation;
-import javafx.animation.Animation;
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuBar;
 import javafx.scene.image.ImageView;
-import javafx.util.Duration;
 
 
 public class ApplicationWindowController {
 
-
-    private int cellDimensions = 1024; // Used for Sprite Animation
-    private Animation animation;
-
-    /**
+    SpriteAnimation icon;
+    /***************************
+     * iconHolder Handler
+     *
      * Linking the ImageView to this controller
      * <p>
      * Setting the handler to animate it using
-     * class SpriteAnimation
+     * class CustomAnimation
      * <p>
      * Setting another Handler for when the mouse
      * exits the icon holder
@@ -29,30 +27,41 @@ public class ApplicationWindowController {
      * @id iconHolder
      * @handle playAnimation()
      * @handle stopAnimation()
-     */
+     ***************************/
     @FXML
-    private ImageView iconHolder;
-
+    private ImageView iconHolder; //Value injected by FXMLLoader
+    /***************************
+     * menuBar Handler
+     *
+     * Appear onMouseEntered its Parent (VBox)
+     * @handle showMenu()
+     *
+     * Hide onMouseExited its Parent (VBox)
+     * @handle hideMenu()
+     ***************************/
+    @FXML
+    private MenuBar menuBar; //Value injected by FXMLLoader
 
     @FXML
-    private void playAnimation() {
-        //Construct the SpriteAnimation
-        animation = new SpriteAnimation(
-                iconHolder,
-                Duration.millis(500), /* This set the speed at which it cycles through the cells*/
-                3,
-                2,
-                0, 0,   /* We have to set the cycle to start at the cell in row 1 col 1*/
-                cellDimensions, cellDimensions
-        );
-        animation.setCycleCount(Animation.INDEFINITE);
-        animation.play();
+    private void playAnimationRight() {
+        icon = new SpriteAnimation(iconHolder);
+        icon.getAnimationRight().play();
 
     }
 
     @FXML
     private void stopAnimation() {
-        animation.stop();
+        icon.getAnimationRight().stop();
+    }
+
+    @FXML
+    private void showMenu() {
+        menuBar.setOpacity(1.0);
+    }
+
+    @FXML
+    private void hideMenu() {
+        menuBar.setOpacity(0.0);
     }
 
 

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.effect.*?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
@@ -13,12 +14,13 @@
             style="-fx-background-color: radial-gradient(center 50% 50% , radius 12% , repeat, #fffaf0, #008080, #90ee90);"
             xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="Controller.ApplicationWindowController">
    <children>
-      <BorderPane layoutX="187.0" layoutY="89.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0"
+      <BorderPane layoutX="187.0" layoutY="89.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0"
                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" onMouseExited="#hideMenu" BorderPane.alignment="CENTER">
                <children>
-                  <MenuBar>
+                  <MenuBar fx:id="menuBar" onMouseEntered="#showMenu"
+                           style="-fx-border-color: black; -fx-border-width: 2;">
                      <menus>
                         <Menu mnemonicParsing="false" text="Settings">
                            <items>
@@ -33,12 +35,15 @@
                            </items>
                         </Menu>
                      </menus>
+                     <VBox.margin>
+                        <Insets top="2.0"/>
+                     </VBox.margin>
                   </MenuBar>
-                  <Label alignment="CENTER" contentDisplay="TOP"
+                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="61.0" prefWidth="578.0"
                          style="-fx-border-color: Black; -fx-border-width: 3; -fx-background-color: lightgreen;"
-                         text="{UN}titled Game" textAlignment="RIGHT">
+                         text="{UN}TITLED GAME" textAlignment="CENTER">
                      <font>
-                        <Font name="Droid Sans Mono" size="46.0"/>
+                        <Font name="Ink Free" size="43.0"/>
                      </font>
                      <cursor>
                         <Cursor fx:constant="CROSSHAIR"/>
@@ -47,7 +52,7 @@
                         <Insets/>
                      </opaqueInsets>
                      <VBox.margin>
-                        <Insets top="5.0"/>
+                        <Insets left="10.0" right="10.0" top="5.0"/>
                      </VBox.margin>
                      <effect>
                         <Lighting diffuseConstant="1.42" specularConstant="1.25" specularExponent="29.78"
@@ -70,30 +75,34 @@
             </VBox>
          </top>
          <center>
-            <ImageView fx:id="iconHolder" fitHeight="300.0" fitWidth="300.0" nodeOrientation="INHERIT"
-                       onMouseEntered="#playAnimation" onMouseExited="#stopAnimation" pickOnBounds="true"
-                       preserveRatio="true" BorderPane.alignment="CENTER">
+            <Group translateX="10.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
-                  <Insets bottom="85.0"/>
+                  <Insets right="35.0"/>
                </BorderPane.margin>
-               <image>
-                  <Image url="@/Resources/CharSpriteSheet.png"/>
-               </image>
-               <viewport>
-                  <Rectangle2D height="1024.0" width="1024.0"/>
-               </viewport>
-               <effect>
-                  <DropShadow blurType="GAUSSIAN" height="59.43" offsetX="-10.0" offsetY="10.0" radius="27.0225"
-                              width="50.66">
-                     <input>
-                        <Reflection bottomOpacity="0.31" topOpacity="0.96"/>
-                     </input>
-                     <color>
-                        <Color red="0.8833333253860474" green="1.0"/>
-                     </color>
-                  </DropShadow>
-               </effect>
-            </ImageView>
+               <children>
+                  <ImageView fx:id="iconHolder" fitHeight="300.0" fitWidth="300.0" layoutX="-4.0" layoutY="91.0"
+                             nodeOrientation="INHERIT" onMouseEntered="#playAnimationRight"
+                             onMouseExited="#stopAnimation" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/Resources/CharSpriteSheet.png"/>
+                     </image>
+                     <viewport>
+                        <Rectangle2D height="1024.0" width="1024.0"/>
+                     </viewport>
+                     <effect>
+                        <DropShadow blurType="GAUSSIAN" height="55.05" offsetX="-10.0" offsetY="10.0" radius="25.9275"
+                                    width="50.66">
+                           <input>
+                              <Reflection bottomOpacity="0.38" fraction="1.0" topOffset="-10.0" topOpacity="0.77"/>
+                           </input>
+                           <color>
+                              <Color red="0.8833333253860474" green="1.0"/>
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </ImageView>
+               </children>
+            </Group>
          </center>
       </BorderPane>
    </children>

@@ -49,6 +49,8 @@ public class ApplicationWindow extends Application {
         stage.initStyle(StageStyle.DECORATED);
         stage.setTitle("{Un}-Titled Game");
         stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.setMaximized(true);
         stage.show();
     }
 
