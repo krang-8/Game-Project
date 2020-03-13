@@ -8,14 +8,14 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" focusTraversable="true" prefHeight="600.0" prefWidth="600.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="anchorPane" focusTraversable="true"
             style="-fx-background-color: radial-gradient(center 50% 50% , radius 12% , repeat, #fffaf0, #008080, #90ee90);"
             xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="Controller.ApplicationWindowController">
    <children>
-      <BorderPane layoutX="187.0" layoutY="89.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0"
-                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="187.0" layoutY="89.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <VBox alignment="CENTER" onMouseExited="#hideMenu" BorderPane.alignment="CENTER">
                <children>
@@ -39,7 +39,7 @@
                         <Insets top="2.0"/>
                      </VBox.margin>
                   </MenuBar>
-                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="61.0" prefWidth="578.0"
+                  <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="TOP" prefHeight="61.0" prefWidth="578.0"
                          style="-fx-border-color: Black; -fx-border-width: 3; -fx-background-color: lightgreen;"
                          text="{UN}TITLED GAME" textAlignment="CENTER">
                      <font>
@@ -75,14 +75,14 @@
             </VBox>
          </top>
          <center>
-            <Group translateX="10.0" BorderPane.alignment="CENTER">
+            <Group onMouseEntered="#playAnimationRight" onMouseExited="#stopAnimation" translateX="10.0"
+                   BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets right="35.0"/>
                </BorderPane.margin>
                <children>
-                  <ImageView fx:id="iconHolder" fitHeight="300.0" fitWidth="300.0" layoutX="-4.0" layoutY="91.0"
-                             nodeOrientation="INHERIT" onMouseEntered="#playAnimationRight"
-                             onMouseExited="#stopAnimation" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iconHolder" fitHeight="314.0" fitWidth="300.0" layoutX="14.0" layoutY="94.0"
+                             nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@/Resources/CharSpriteSheet.png"/>
                      </image>
@@ -101,6 +101,34 @@
                         </DropShadow>
                      </effect>
                   </ImageView>
+                  <Button fx:id="startButton" alignment="CENTER" blendMode="ADD" layoutX="-22.0" layoutY="326.0"
+                          mnemonicParsing="false" onAction="#startGame" onMouseEntered="#startButtonEntered"
+                          onMouseExited="#startButtonExited" prefHeight="117.0" prefWidth="372.0"
+                          style="-fx-background-color: transparent;" text="NEW GAME" underline="true">
+                     <font>
+                        <Font name="Ink Free" size="37.0"/>
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0"/>
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.0906432718038559" green="0.6315789222717285"
+                                           blue="0.3250487446784973"/>
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
+                     <cursor>
+                        <Cursor fx:constant="HAND"/>
+                     </cursor>
+                  </Button>
                </children>
             </Group>
          </center>
