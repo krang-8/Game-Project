@@ -1,5 +1,14 @@
 package Resources;
 
+/*************************
+ * class CustomAnimation
+ *
+ * this class is used to make
+ * the animations for the sprite's
+ * movement
+ *
+ ************************/
+
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;
 import javafx.geometry.Rectangle2D;
