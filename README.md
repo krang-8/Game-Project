@@ -1,5 +1,6 @@
 # Group-Ting-Fam
 CPSC233
+Use Java 13 if possible but other versions should work
 
 https://github.com/krang-8/Group-Ting-Fam (Access is required as the repository is private)
 
@@ -26,7 +27,8 @@ https://github.com/krang-8/Group-Ting-Fam (Access is required as the repository 
                  <javafx
                         =class ApplicationWindow
                         
-       if it doesn't work add this commandline to your VM Configurations : --module-path "(Path to javafx Library)" --add-modules javafx.controls,javafx.fxml
+       if it doesn't work add this commandline to your VM Configurations : 
+       --module-path "(Path to javafx Library)" --add-modules javafx.controls,javafx.fxml
                  
 5.     In terms of the application itself the project is almost finished developing 
        the view and controllers                                      
