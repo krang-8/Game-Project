@@ -1,7 +1,7 @@
 # Group-Ting-Fam
 CPSC233
 
-Use Java 13 if possible but other versions should work
+Use JDK 13 if possible but other versions should work
 
 https://github.com/krang-8/Group-Ting-Fam (Access is required as the repository is private)
 
