@@ -11,9 +11,9 @@ https://github.com/krang-8/Group-Ting-Fam (Access is required as the repository 
 
                                                     // {UN}TITLED GAME
        
-1.     Download zip file
-2.     Extract the files 
-3.     Import it into IDE 
+1.     Download zip folder.
+2.     Extract files from folder.
+3.     Import extracted files into IDE 
        Eclipse or IntelliJ
       
 
