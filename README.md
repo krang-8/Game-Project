@@ -2,6 +2,7 @@
 CPSC233
 
 https://github.com/krang-8/Group-Ting-Fam (Access is required as the repository is private)
+Use JDK 13 if possible but other versions should work.
 
                        These files are used to develop the final project and are updated during the 
                                         course of the development of the game. 
@@ -9,10 +10,10 @@ https://github.com/krang-8/Group-Ting-Fam (Access is required as the repository 
 
                                                     // {UN}TITLED GAME
        
-1.     Download zip file
-2.     Extract the files 
-3.     Import it into IDE 
-       Eclipse or IntelliJ
+1.     Download zip folder.
+2.     Extract files from folder.
+3.     Import the extracted files into IDE 
+       Eclipse or IntelliJ.
       
 
 4.     Run the main class In the JavaFx Application located through the packages at
