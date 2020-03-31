@@ -1,4 +1,9 @@
 package Model;
+/**
+ * Makes and sets up the game window
+ * sets the location and the color
+ */
+
 import java.awt.*;
 
 public class GameWindow extends javax.swing.JFrame {

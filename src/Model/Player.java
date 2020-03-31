@@ -1,10 +1,20 @@
 package Model;
+/**
+ * This creates an Player object
+ * and handles the physics of the player in
+ * the game with regards to collisions with blocks
+ * as well as drawing the player
+ **/
+
 import java.awt.*;
 
 public class Player {
 
     GamePanel panel;
 
+ /*
+* Instance variables
+ */
     int x;
     int y;
     int width;
@@ -21,7 +31,6 @@ public class Player {
     boolean keyDown;
     boolean keyDash;
 
-
     public Player(int x, int y, GamePanel panel) {
         this.panel = panel;
         this.x = x;
@@ -33,6 +42,7 @@ public class Player {
         hitBox = new Rectangle(x, y, width, height);
     }
 
+    // This handles the physics of the game using the players inputs and also handles the hitboxs
     public void set() {
         if (keyLeft && keyRight || !keyLeft && !keyRight) xSpeed *= 0.8;
         else if (keyLeft && !keyRight) xSpeed--;
@@ -98,6 +108,7 @@ public class Player {
         if (y > 900) panel.reset();
     }
 
+    // Drawing the object
     public void draw(Graphics2D gtd) {
 
             if (keyDown) {

@@ -1,4 +1,9 @@
 package Model;
+/**
+ * These methods are called in game panel to detect the users input
+ * from the keyboard
+ */
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 

@@ -2,6 +2,11 @@ package Model;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This executes the program and defines the boundaries of the
+ * platformer and handles closing the game as well
+ */
+
 public class Platformer {
 
     public Platformer(){

@@ -1,4 +1,9 @@
 package Model;
+/**
+ * This class is used to help define what the map is
+ * made of and sets the block up individually
+ * and also draws the blocks onto the screen
+ */
 
 import java.awt.*;
 

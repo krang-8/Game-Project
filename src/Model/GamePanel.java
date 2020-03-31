@@ -1,4 +1,10 @@
 package Model;
+/*
+* This class creates the scene and deal with the
+* players inputs as well as the walls in the game
+* contains a player object
+*/
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +14,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GamePanel extends javax.swing.JPanel implements ActionListener {
+
     Player player;
 
     ArrayList<Wall> walls = new ArrayList<>();
@@ -81,6 +88,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
      * and creates the landscape of the map shown while
      * playing the game
      */
+
     public void makeWalls(int offset){
         for (int i = 0; i < 500; i+=25){
             walls.add(new Wall(i, 700, 25, 25));
@@ -127,7 +135,7 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
     }
     /*
     * This method paints the blocks
-     */
+    */
 
     public void paint(Graphics g){
         super.paint(g);
