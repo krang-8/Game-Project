@@ -10,9 +10,9 @@ Use JDK 13 if possible but other versions should work.
 
                                                     // {UN}TITLED GAME
        
-1.     Download zip folder.
+1.     Download Demo3.zip folder from releases.
 2.     Extract files from folder.
-3.     Import the extracted files into IDE 
+3.     Import the extracted files into the src folder of your IDE of chosing.
        Eclipse or IntelliJ.
       
 
@@ -25,7 +25,7 @@ Use JDK 13 if possible but other versions should work.
             .
             <View
                  <javafx
-                        =class ApplicationWindow
+                        ->class ApplicationWindow
                         
        if it doesn't work add this commandline to your VM Configurations : --module-path "(Path to javafx Library)" --add-modules javafx.controls,javafx.fxml
                  
