@@ -15,7 +15,7 @@ Use JDK 13 if possible but other versions should work.
 3.     Import the extracted files into the src folder of your IDE of chosing.
        Eclipse or IntelliJ.
 4.     Run the main class In the JavaFx Application located through the packages at
-       /View.javafx/ApplicationWindow.
+       /View/javafx/ApplicationWindow.
        
        <src
             .
