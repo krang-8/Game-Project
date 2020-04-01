@@ -14,8 +14,6 @@ Use JDK 13 if possible but other versions should work.
 2.     Extract files from folder.
 3.     Import the extracted files into the src folder of your IDE of chosing.
        Eclipse or IntelliJ.
-      
-
 4.     Run the main class In the JavaFx Application located through the packages at
        /View.javafx/ApplicationWindow.
        
@@ -27,7 +25,7 @@ Use JDK 13 if possible but other versions should work.
                  <javafx
                         ->class ApplicationWindow
                         
-       if it doesn't work add this commandline to your VM Configurations : --module-path "(Path to javafx Library)" --add-modules javafx.controls,javafx.fxml
+       if it doesn't work add this commandline to your 
+       VM Configurations : --module-path "(Path to javafx Library)" --add-modules javafx.controls,javafx.fxml
                  
-5.     In terms of the application itself the project is almost finished developing 
-       the view and controllers                                      
+5.     Press "New Game" to start the game and ENJOY! :D
