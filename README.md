@@ -10,10 +10,10 @@ Use JDK 13 if possible but other versions should work.
 
                                                     // {UN}TITLED GAME
        
-1.     Download Demo3.zip folder from releases.
-2.     Extract files from folder.
+1.     Download Demo3.zip folder from releases. The current release is titled "Demo 3".
+2.     Extract the ZIP file into a folder.
 3.     Import the extracted files into the src folder of your IDE of chosing.
-       Eclipse or IntelliJ.
+       We recommend Eclipse or IntelliJ. 
 4.     Run the main class In the JavaFx Application located through the packages at
        /View/javafx/ApplicationWindow.
        
