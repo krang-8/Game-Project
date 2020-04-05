@@ -10,7 +10,7 @@ Use JDK 13 if possible but other versions should work.
 
                                                     // {UN}TITLED GAME
        
-1.     From the branches tab, download the folder titled "demo3".
+1.     From the branch tab, download the folder titled "demo3".
 2.     Extract the ZIP file into a folder.
 3.     Import the extracted files into the src folder of your IDE of chosing.
        We recommend Eclipse or IntelliJ. 
