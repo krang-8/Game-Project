@@ -10,7 +10,7 @@ Use JDK 13 if possible but other versions should work.
 
                                                     // {UN}TITLED GAME
        
-1.     Download Demo3.zip folder from releases. The current release is titled "Demo 3".
+1.     From the realeases tab, download the folder titled "Demo3.zip".
 2.     Extract the ZIP file into a folder.
 3.     Import the extracted files into the src folder of your IDE of chosing.
        We recommend Eclipse or IntelliJ. 
