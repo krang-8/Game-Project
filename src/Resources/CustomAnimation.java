@@ -1,18 +1,20 @@
 package Resources;
 
+/*************************
+ * class CustomAnimation
+ *
+ * this class is used to make
+ * the animations for the sprite's
+ * movement
+ *
+ ************************/
+
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
-/**************************************
- *class CustomAnimation
- *
- * This class will create the animation that is seen on the main menu
- * when this Project is started this animation changes color when the user hovers over the
- * New Game button
- *
- **************************************/
+
 public class CustomAnimation extends Transition {
 
     private final ImageView imageView;

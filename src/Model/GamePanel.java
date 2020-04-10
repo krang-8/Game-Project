@@ -5,21 +5,28 @@ package Model;
 * contains a player object
 */
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class GamePanel extends javax.swing.JPanel implements ActionListener {
 
-    Player player;
+    private BufferedImage image;
+
+    private Player player;
 
     ArrayList<Wall> walls = new ArrayList<>();
 
-    Timer gameTimer;
+    private Timer gameTimer;
 
     public GamePanel(){
 
@@ -37,6 +44,15 @@ public class GamePanel extends javax.swing.JPanel implements ActionListener {
             }
 
         }, 0,17);
+
+        try {
+            image = ImageIO.read(new File("src/Resources/PlatformerBackground.png"));
+        }catch (IOException ex)
+        {ex.printStackTrace();
+        }finally {
+            JLabel picLabel = new JLabel(new ImageIcon(image));
+            add(picLabel);
+        }
 
     }
 /*
