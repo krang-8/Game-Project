@@ -5,7 +5,7 @@ package Controller;
  */
 
 import Resources.SpriteAnimation;
-import View.swing.Platformer;
+import Model.Platformer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
